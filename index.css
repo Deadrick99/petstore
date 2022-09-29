@@ -1,0 +1,19 @@
+/* 
+  This style sheet loads slightly faster than the React css,
+  good to remove flashes of content without styling (such
+  as the white flashbang before loading a dark theme.
+*/
+
+:root {
+  color-scheme: dark light;
+}
+
+body {
+  background-color: #232323;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: white;
+  }
+}
