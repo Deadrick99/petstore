@@ -8,13 +8,20 @@ import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SignUp = () => {
+    // Styling Parameters
+    const FormGroupClass = 'mb-3';
+
     const [form, setForm] = useState({
         email: '',
+        first_name: '',
+        last_name: '',
         password: '',
         password_verify: ''
     });
     const [errors, setErrors] = useState({
         email: null,
+        first_name: null,
+        last_name: null,
         password: null,
         password_verify: null
     })
@@ -43,9 +50,47 @@ const SignUp = () => {
                 <Col md={7}>
                     <Form>
                         {/**
+                         * First Name
+                         */}
+                        <Form.Group className={FormGroupClass} controlId='formFirstName'>
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Enter your first name...'
+                                value={form.first_name}
+                                onChange={(e) => setField('first_name', e.target.value)}
+                                isInvalid={!!errors.first_name}
+                            />
+                        </Form.Group>
+
+                        {/**
+                         * Last Name
+                         */}
+
+                        {/**
+                         * Phone Number
+                         */}
+
+                        {/**
+                         * Address
+                         */}
+
+                        {/**
+                         * City
+                         */}
+
+                        {/**
+                         * State
+                         */}
+
+                        {/**
+                         * Zip Code
+                         */}
+
+                        {/**
                          * Email Address Field
                          */}
-                        <Form.Group className='mb-3' controlId='formSigUpEmail'>
+                        <Form.Group className={FormGroupClass} controlId='formSigUpEmail'>
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control
                                 type='email'
@@ -62,7 +107,7 @@ const SignUp = () => {
                         {/**
                          * Password Field
                         */}
-                        <Form.Group className='mb-3' controlId='formSignUpPassword'>
+                        <Form.Group className={FormGroupClass} controlId='formSignUpPassword'>
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
@@ -76,7 +121,7 @@ const SignUp = () => {
                         {/**
                          * Password Verification Field
                         */}
-                        <Form.Group className='mb-3' controlId='formSignUpPasswordVerify'>
+                        <Form.Group className={FormGroupClass} controlId='formSignUpPasswordVerify'>
                             <Form.Label>Password Verification</Form.Label>
                             <Form.Control
                                 type="password"
