@@ -37,7 +37,7 @@ const SignUp = () => {
             [field]:value
         });
 
-        if (!!errors[field as keyof typeof errors])
+        if (errors[field as keyof typeof errors])
             setErrors({
                 ...errors,
                 [field]:null
@@ -66,26 +66,51 @@ const SignUp = () => {
                         {/**
                          * Last Name
                          */}
+                        <Form.Group className={FormGroupClass} controlId='formLastName'>
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Enter your last name...'
+                                value={form.last_name}
+                                onChange={(e) => setField('last_name', e.target.value)}
+                                isInvalid={!!errors.last_name}
+                            />
+                        </Form.Group>
 
                         {/**
                          * Phone Number
                          */}
+                        <Form.Group className={FormGroupClass} controlId="formPhoneNumber">
+
+                        </Form.Group>
 
                         {/**
                          * Address
                          */}
+                        <Form.Group className={FormGroupClass} controlId="formAddress">
+
+                        </Form.Group>
 
                         {/**
                          * City
                          */}
+                        <Form.Group className={FormGroupClass} controlId="formCity">
+
+                        </Form.Group>
 
                         {/**
                          * State
                          */}
+                        <Form.Group className={FormGroupClass} controlId="formState">
+
+                        </Form.Group>
 
                         {/**
                          * Zip Code
                          */}
+                        <Form.Group className={FormGroupClass} controlId="formZipCode">
+                            
+                        </Form.Group>
 
                         {/**
                          * Email Address Field
