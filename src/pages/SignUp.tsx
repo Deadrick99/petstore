@@ -13,6 +13,7 @@ const SignUp = () => {
 
     const [form, setForm] = useState({
         address: '',
+        city: '',
         email: '',
         first_name: '',
         last_name: '',
@@ -21,7 +22,8 @@ const SignUp = () => {
         phone_number: ''
     });
     const [errors, setErrors] = useState({
-        address: '',
+        address: null,
+        city: null,
         email: null,
         first_name: null,
         last_name: null,
@@ -113,7 +115,14 @@ const SignUp = () => {
                          * City
                          */}
                         <Form.Group className={FormGroupClass} controlId="formCity">
-
+                            <Form.Label>City</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Enter your city...'
+                                value={form.city}
+                                onChange={(e) => setField('city', e.target.value)}
+                                isInvalid={!!errors.address}
+                            />
                         </Form.Group>
 
                         {/**
