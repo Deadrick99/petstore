@@ -12,6 +12,7 @@ const SignUp = () => {
     const FormGroupClass = 'mb-3';
 
     const [form, setForm] = useState({
+        address: '',
         email: '',
         first_name: '',
         last_name: '',
@@ -20,6 +21,7 @@ const SignUp = () => {
         phone_number: ''
     });
     const [errors, setErrors] = useState({
+        address: '',
         email: null,
         first_name: null,
         last_name: null,
@@ -83,21 +85,28 @@ const SignUp = () => {
                          * Phone Number
                          */}
                         <Form.Group className={FormGroupClass} controlId="formPhoneNumber">
-                         <Form.Label>Phone Number</Form.Label>
-                         <Form.Control
-                            type='tel'
-                            placeholder='123-456-7890'
-                            value={form.phone_number}
-                            onChange={(e) => setField('phone_number', e.target.value)}
-                            isInvalid={!!errors.phone_number}
-                         />
+                            <Form.Label>Phone Number</Form.Label>
+                            <Form.Control
+                                type='tel'
+                                placeholder='123-456-7890'
+                                value={form.phone_number}
+                                onChange={(e) => setField('phone_number', e.target.value)}
+                                isInvalid={!!errors.phone_number}
+                             />
                         </Form.Group>
 
                         {/**
                          * Address
                          */}
                         <Form.Group className={FormGroupClass} controlId="formAddress">
-
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Enter your physical address...'
+                                value={form.address}
+                                onChange={(e) => setField('address', e.target.value)}
+                                isInvalid={!!errors.address}
+                            />                         
                         </Form.Group>
 
                         {/**
