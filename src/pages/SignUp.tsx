@@ -16,14 +16,16 @@ const SignUp = () => {
         first_name: '',
         last_name: '',
         password: '',
-        password_verify: ''
+        password_verify: '',
+        phone_number: ''
     });
     const [errors, setErrors] = useState({
         email: null,
         first_name: null,
         last_name: null,
         password: null,
-        password_verify: null
+        password_verify: null,
+        phone_number: null
     })
 
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -81,7 +83,14 @@ const SignUp = () => {
                          * Phone Number
                          */}
                         <Form.Group className={FormGroupClass} controlId="formPhoneNumber">
-
+                         <Form.Label>Phone Number</Form.Label>
+                         <Form.Control
+                            type='tel'
+                            placeholder='123-456-7890'
+                            value={form.phone_number}
+                            onChange={(e) => setField('phone_number', e.target.value)}
+                            isInvalid={!!errors.phone_number}
+                         />
                         </Form.Group>
 
                         {/**
@@ -109,7 +118,7 @@ const SignUp = () => {
                          * Zip Code
                          */}
                         <Form.Group className={FormGroupClass} controlId="formZipCode">
-                            
+
                         </Form.Group>
 
                         {/**
