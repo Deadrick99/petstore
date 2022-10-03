@@ -19,7 +19,9 @@ const SignUp = () => {
         last_name: '',
         password: '',
         password_verify: '',
-        phone_number: ''
+        phone_number: '',
+        state: '',
+        zip_code: ''
     });
     const [errors, setErrors] = useState({
         address: null,
@@ -29,7 +31,9 @@ const SignUp = () => {
         last_name: null,
         password: null,
         password_verify: null,
-        phone_number: null
+        phone_number: null,
+        state: null,
+        zip_code: null
     })
 
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -129,14 +133,26 @@ const SignUp = () => {
                          * State
                          */}
                         <Form.Group className={FormGroupClass} controlId="formState">
-
+                            <Form.Label>State</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Enter your state...'
+                                value={form.state}
+                                onChange={(e) => setField('state', e.target.value)}
+                            />
                         </Form.Group>
 
                         {/**
                          * Zip Code
                          */}
                         <Form.Group className={FormGroupClass} controlId="formZipCode">
-
+                            <Form.Label>Zip Code</Form.Label>
+                            <Form.Control
+                                type='number'
+                                placeholder='Enter your zip code...'
+                                value={form.zip_code}
+                                onChange={(e) => setField('zip_code', e.target.value)}
+                            />
                         </Form.Group>
 
                         {/**
