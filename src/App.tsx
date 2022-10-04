@@ -7,6 +7,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import Page404 from "./pages/Page404";
+import Navbar from './pages/Navbar';
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

@@ -8,6 +8,37 @@
   color-scheme: dark light;
 }
 
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: left;
+  max-width: 2400px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+}
+.navbar h1 {
+  color: #f2f2f2;
+}
+.navbar .leftlinks {
+  flex: 1 1 200px;;
+}
+.navbar .rightlinks {
+  margin-right: auto;
+}
+.navbar a {
+  margin-left: 40px;
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover {
+  color: #f2f2f2;
+}
+.content {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
 body {
   background-color: #232323;
 }
