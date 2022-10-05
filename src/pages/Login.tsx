@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import * as yup from 'yup';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,31 +13,77 @@ const Login = () => {
     const FormGroupClass = 'mb-3';
 
     const [form, setForm] = useState({
-        email: '',
-        password: '',
-    });
-    const [errors, setErrors] = useState({
-        email: null,
-        password: null,
-    })
+        email: {
+            error: null,
+            isValid: false,
+            message: '',
+            value: ''
+        },
+        password: {
+            error: null,
+            isValid: false,
+            message: '',
+            value: ''
+        }});
 
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        console.log(form)
+    const setFieldError = (field: string, value: any) => {
+        var f = form;
+        var fieldKey = field as keyof typeof form;
+        f[fieldKey].error = value;
+        setForm({...f});
     }
 
-    const setField = (field: any, value: any) => {
-        setForm({
-            ...form,
-            [field]:value
-        });
-
-        if (errors[field as keyof typeof errors])
-            setErrors({
-                ...errors,
-                [field]:null
-            });
+    const setFieldIsValid = (field: string, value: any) => {
+        var f = form;
+        var fieldKey = field as keyof typeof form;
+        f[fieldKey].isValid = value;
+        setForm({...f});
     }
+
+    const setFieldMessage = (field: string, value: any) => {
+        var f = form;
+        var fieldKey = field as keyof typeof form;
+        f[fieldKey].message = value;
+        setForm({...f});
+    }
+
+    const setFieldValue = (field: string, value: any) => {
+        var f = form;
+        var fieldKey = field as keyof typeof form;
+        f[fieldKey].value = value;
+        setForm({...f});
+    }
+
+    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+
+        setFieldError('email', null);
+        setFieldIsValid('email', true);
+        setFieldMessage('email', null);
+        yup.string()
+            .email()
+            .required()
+            .validate(form.email)
+            .catch((e) => {
+                form.email.error = e;
+                form.email.isValid = false;
+                form.email.message = 'email address is invalid'
+            })
+        
+        setFieldError('password', null);
+        setFieldIsValid('password', true);
+        setFieldMessage('password', null);
+        yup.string()
+            .required()
+            .validate(form.password)
+            .catch((e) => {
+                form.password.error = e;
+                form.password.isValid = false;
+                form.password.message = 'password is invalid'
+            }
+            
+        )
+    };
 
     return (
         <Container>
@@ -51,13 +98,10 @@ const Login = () => {
                             <Form.Control
                                 type='email'
                                 placeholder='Enter your email address...'
-                                value={form.email}
-                                onChange={(e) => setField('email', e.target.value)}
-                                isInvalid={!!errors.email}
+                                value={form.email.value}
+                                onChange={(e) => setFieldValue('email', e.target.value)}
+                                isInvalid={!!form.email.error}
                             />
-                            <Form.Control.Feedback type='invalid'>
-                                {errors.email}
-                            </Form.Control.Feedback>
                         </Form.Group>
 
                         {/**
@@ -68,9 +112,9 @@ const Login = () => {
                             <Form.Control
                                 type="password"
                                 placeholder='Enter your password...'
-                                value={form.password}
-                                onChange={(e) => setField('password', e.target.value)}
-                                isInvalid={!!errors.password}
+                                value={form.password.value}
+                                onChange={(e) => setFieldValue('password', e.target.value)}
+                                isInvalid={!!form.password.error}
                             />
                         </Form.Group>
 
