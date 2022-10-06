@@ -15,13 +15,13 @@ const Login = () => {
     const [form, setForm] = useState({
         email: {
             error: null,
-            isValid: false,
+            isValid: true,
             message: '',
             value: ''
         },
         password: {
             error: null,
-            isValid: false,
+            isValid: true,
             message: '',
             value: ''
         }});
@@ -55,36 +55,38 @@ const Login = () => {
     }
 
     const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-
         setFieldError('email', null);
-        setFieldIsValid('email', true);
+        setFieldIsValid('email', false);
         setFieldMessage('email', null);
-        yup.string()
-            .email()
-            .required()
-            .validate(form.email)
-            .catch((e) => {
-                form.email.error = e;
-                form.email.isValid = false;
-                form.email.message = 'email address is invalid'
-            })
+        // yup.string()
+        //     .email()
+        //     .required()
+        //     .validate(form.email.value)
+        //     .catch((e) => {
+        //         form.email.error = e;
+        //         form.email.isValid = false;
+        //         form.email.message = 'There is a problem with your email...'
+        //     })
         
-        setFieldError('password', null);
-        setFieldIsValid('password', true);
-        setFieldMessage('password', null);
-        yup.string()
-            .required()
-            .validate(form.password)
-            .catch((e) => {
-                form.password.error = e;
-                form.password.isValid = false;
-                form.password.message = 'password is invalid'
-            }
-            
-        )
+        // setFieldError('password', null);
+        // setFieldIsValid('password', true);
+        // setFieldMessage('password', null);
+        // yup.string()
+        //     .required()
+        //     .validate(form.password.value)
+        //     .catch((e) => {
+        //         form.password.error = e;
+        //         form.password.isValid = false;
+        //         form.password.message = 'There is a problem with your password...'
+        //     }
+        // )
+
+        console.log("submitting")
+        event.preventDefault();
     };
 
+    console.log('drawing');
+    console.log(form);
     return (
         <Container>
             <Row className='justify-content-center'>
@@ -96,12 +98,17 @@ const Login = () => {
                         <Form.Group className={FormGroupClass} controlId='formSigUpEmail'>
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control
-                                type='email'
+                                type='text'
                                 placeholder='Enter your email address...'
                                 value={form.email.value}
                                 onChange={(e) => setFieldValue('email', e.target.value)}
-                                isInvalid={!!form.email.error}
+                                isInvalid={!form.email.isValid}
                             />
+                            {!form.email.isValid &&
+                                <Form.Text className='text-danger'>
+                                    {form.email.message}
+                                </Form.Text>
+                            }
                         </Form.Group>
 
                         {/**
@@ -110,12 +117,17 @@ const Login = () => {
                         <Form.Group className={FormGroupClass} controlId='formSignUpPassword'>
                             <Form.Label>Password</Form.Label>
                             <Form.Control
-                                type="password"
+                                type="text"
                                 placeholder='Enter your password...'
                                 value={form.password.value}
                                 onChange={(e) => setFieldValue('password', e.target.value)}
-                                isInvalid={!!form.password.error}
+                                isInvalid={!form.password.isValid}
                             />
+                            {!form.password.isValid &&
+                                <Form.Text className='text-danger'>
+                                    {form.password.message}
+                                </Form.Text>
+                            }
                         </Form.Group>
 
                         {/**
