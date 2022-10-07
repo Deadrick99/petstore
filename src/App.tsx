@@ -9,6 +9,7 @@ import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 import Page404 from "./pages/Page404";
 import SignUp from "./pages/SignUp";
+import Navbar from './pages/Navbar';
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
