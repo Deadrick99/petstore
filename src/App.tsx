@@ -7,7 +7,10 @@ import Adopt from "./pages/Adopt";
 
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
+import Login from "./pages/Login";
 import Page404 from "./pages/Page404";
+import SignUp from "./pages/SignUp";
+import Navbar from './pages/Navbar';
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -17,6 +20,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route index element={<Home />} />
           <Route path="*" element={<Page404 />} />
           <Route  path="/Adopt" element={<Adopt/>}/>
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
         </Route>
       </Routes>
     </BrowserRouter>
