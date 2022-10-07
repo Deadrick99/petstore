@@ -10,6 +10,7 @@ const Navbar = () => {
           <a href ="/merchandise">Merchandise</a>
           <a href ="/suppliers">Suppliers</a>
           <a href ="/customers">Customers</a>
+          <a href = "/Adopt">Adopt</a>
       </div>
       <div className='rightlinks'>
           <a href ="/cart">Cart</a>
