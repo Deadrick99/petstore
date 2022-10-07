@@ -4,14 +4,28 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import * as yup from 'yup';
+import { z } from 'zod';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Login = () => {
-    // Styling Parameters
-    const FormGroupClass = 'mb-3';
 
+const FormGroupClass = 'mb-3';
+const Params = ['email', 'password'];
+const Schemas = {
+    email: z.string({
+        required_error: 'Email should be non-empty',
+        invalid_type_error: 'Email must be a string'
+    }).trim().email({
+        message: 'Email should be a valid address'
+    }),
+    password: z.string({
+        required_error: 'Password if required',
+        invalid_type_error: 'Password must be a string'
+    }).trim().min(5, {message: 'Password should be non-empty'})
+};
+
+
+const Login = () => {
     const [form, setForm] = useState({
         email: {
             error: null,
@@ -26,67 +40,40 @@ const Login = () => {
             value: ''
         }});
 
-    const setFieldError = (field: string, value: any) => {
-        var f = form;
-        var fieldKey = field as keyof typeof form;
-        f[fieldKey].error = value;
-        setForm({...f});
-    }
-
-    const setFieldIsValid = (field: string, value: any) => {
-        var f = form;
-        var fieldKey = field as keyof typeof form;
-        f[fieldKey].isValid = value;
-        setForm({...f});
-    }
-
-    const setFieldMessage = (field: string, value: any) => {
-        var f = form;
-        var fieldKey = field as keyof typeof form;
-        f[fieldKey].message = value;
-        setForm({...f});
-    }
-
     const setFieldValue = (field: string, value: any) => {
         var f = form;
         var fieldKey = field as keyof typeof form;
         f[fieldKey].value = value;
         setForm({...f});
     }
+    
+    const updateField = (field: string, error: any, isValid: boolean, message: string) => {
+        var f = form;
+        var fieldKey = field as keyof typeof form;
+        f[fieldKey].error = error;
+        f[fieldKey].isValid = isValid;
+        f[fieldKey].message = message;
+        setForm({...f});
+    }
 
     const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        setFieldError('email', null);
-        setFieldIsValid('email', false);
-        setFieldMessage('email', null);
-        // yup.string()
-        //     .email()
-        //     .required()
-        //     .validate(form.email.value)
-        //     .catch((e) => {
-        //         form.email.error = e;
-        //         form.email.isValid = false;
-        //         form.email.message = 'There is a problem with your email...'
-        //     })
-        
-        // setFieldError('password', null);
-        // setFieldIsValid('password', true);
-        // setFieldMessage('password', null);
-        // yup.string()
-        //     .required()
-        //     .validate(form.password.value)
-        //     .catch((e) => {
-        //         form.password.error = e;
-        //         form.password.isValid = false;
-        //         form.password.message = 'There is a problem with your password...'
-        //     }
-        // )
+        Params.forEach(function (field, _) {
+            var schemaKey = field as keyof typeof Schemas;
+            var formKey = field as keyof typeof form;
+            try
+            {
+                let value = Schemas[schemaKey].parse(form[formKey].value);
+                setFieldValue(field, value);
+                updateField(field, null, true, '');
+            } catch(error: any) {
+                console.log(error.issues[0].message)
+                updateField(field, error, false, String(error.issues[0].message));
+            }
+        })
 
-        console.log("submitting")
         event.preventDefault();
     };
 
-    console.log('drawing');
-    console.log(form);
     return (
         <Container>
             <Row className='justify-content-center'>
