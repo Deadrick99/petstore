@@ -57,7 +57,6 @@ const Login = () => {
                 setFieldValue(field, value);
                 updateField(field, null, true, '');
             } catch(error: any) {
-                console.log(error.issues[0].message)
                 updateField(field, error, false, String(error.issues[0].message));
             }
         })
