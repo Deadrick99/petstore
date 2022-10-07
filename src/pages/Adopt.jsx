@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "./Adopt.css";
+import "./AdoptStyle.css";
 import { useFormik } from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
