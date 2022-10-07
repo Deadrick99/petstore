@@ -6,7 +6,7 @@ const Navbar = () => {
       <h1>PetStore.com</h1>
       <div className="leftlinks">
           <a href ="/">Home</a>
-          <a href ="/pets">Pets</a>
+          <a href ="/Pets">Pets</a>
           <a href ="/merchandise">Merchandise</a>
           <a href ="/suppliers">Suppliers</a>
           <a href ="/customers">Customers</a>
