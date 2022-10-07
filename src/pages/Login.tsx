@@ -13,13 +13,13 @@ const FormGroupClass = 'mb-3';
 const Params = ['email', 'password'];
 const Schemas = {
     email: z.string({
-        required_error: 'Email should be non-empty',
+        required_error: 'Email is required',
         invalid_type_error: 'Email must be a string'
     }).trim().email({
         message: 'Email should be a valid address'
     }),
     password: z.string({
-        required_error: 'Password if required',
+        required_error: 'Password is required',
         invalid_type_error: 'Password must be a string'
     }).trim().min(5, {message: 'Password should be non-empty'})
 };
@@ -27,18 +27,9 @@ const Schemas = {
 
 const Login = () => {
     const [form, setForm] = useState({
-        email: {
-            error: null,
-            isValid: true,
-            message: '',
-            value: ''
-        },
-        password: {
-            error: null,
-            isValid: true,
-            message: '',
-            value: ''
-        }});
+        email: {error: null, isValid: true, message: '', value: ''},
+        password: {error: null, isValid: true, message: '', value: ''}
+    });
 
     const setFieldValue = (field: string, value: any) => {
         var f = form;
