@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import {basicSchema} from "../schemas/YupSchema"
-const onSubmit = async (values, actions) =>{
+const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
   await new Promise ((resolve) => setTimeout(resolve,2000));
   actions.resetForm();
 }

@@ -6,62 +6,69 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
+import Pet from "./Pet";
 
 
 function Pets () 
 {
-    const [pets,setPets]= useState([]);
+    const [pets,setPets]= useState<Pet[]>([]);
     useEffect(()=>{
         const fetchPets = async() => {
             
                 const response = await Axios.get("http://petstoretest-production.up.railway.app/api/animals");
                 initPets(response.data)
-
+                console.log("hi")
         }
         fetchPets();
-    },[]) 
-    const initPets = (data)=>
+    }) 
+    const initPets = (data: string | any[])=>
     {
         for(let i = 0; i<data.length;i++)
         {
-            const pet = new Array;
-            pet.id = data[i].ANIMALID;
-            pet.name = data[i].NAME;
-            pet.category = data[i].CATEGORY;
-            pet.breed = data[i].BREED; 
-            pet.dob = data[i].DATEBORN;
-            pet.gender = data[i].GENDER;
-            pet.img = data[i].IMAGEFILE;
-            pet.imgH = data[i].IMAGEHEIGHT;
-            pet.imgW = data[i].IMAGEWIDTH;
-            pet.price = data[i].LISTPRICE;
-            pet.photo = data[i].PHOTO;
-            pet.reg = data[i].REGISTERED;
-            pets.push(pet);
+            let pets = new Array; 
+            const Pet: Pet={
+            id :data[i].ANIMALID,
+            name :data[i].NAME,
+            category :data[i].CATEGORY, 
+            breed :data[i].BREED,
+            dob :data[i].DATEBORN,
+            gender :data[i].GENDER,
+            img :data[i].IMAGEFILE,
+            imgH :data[i].IMAGEHEIGHT, 
+            imgW :data[i].IMAGEWIDTH,
+            price :data[i].LISTPRICE,
+            photo :data[i].PHOTO,
+            reg: data[i].REGISTERED,
+            
+        }
+        console.log(Pet.name)
+            pets.push(Pet);
         }
         setPets(pets);
        
     }
-    const petCards = pets.map(pet =>{
+    const petCards = pets.map(Pet =>{
         return(
             <Col sm={3}>
             <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
-                <Card.Title>{pet.name}</Card.Title>
-                <Card.Subtitle>{pet.category}</Card.Subtitle>
-                <Card.Subtitle>{pet.breed}</Card.Subtitle>
-                <Card.Subtitle>{pet.gender}</Card.Subtitle>
+                <Card.Title>{Pet.name}</Card.Title>
+                <Card.Subtitle>{Pet.category}</Card.Subtitle>
+                <Card.Subtitle>{Pet.breed}</Card.Subtitle>
+                <Card.Subtitle>{Pet.gender}</Card.Subtitle>
                 <Button variant="primary" href="/Adopt">Adopt me!</Button>
             </Card.Body> 
             </Card>
             </Col>
+            
         )
-    })
+    }) 
     return(
         <div>
            <Row>
             {petCards}
+            
             </Row> 
         </div>
     )

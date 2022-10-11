@@ -26,6 +26,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/Pets" element={<Pets/>}/>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
   </React.StrictMode>
 );
