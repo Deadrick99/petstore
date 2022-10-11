@@ -11,7 +11,7 @@ import Pet from "./Pet";
 
 function Pets () 
 {
-    const [pets,setPets]= useState<Pet[]>([]);
+    const [pets,setPets]= useState<Array<Pet>>([]);
     useEffect(()=>{
         const fetchPets = async() => {
             
@@ -20,32 +20,32 @@ function Pets ()
                 console.log("hi")
         }
         fetchPets();
-    }) 
+    },[]) 
     const initPets = (data: string | any[])=>
     {
+        let petsArr = new Array<Pet>; 
         for(let i = 0; i<data.length;i++)
         {
-            let pets = new Array; 
-            const Pet: Pet={
-            id :data[i].ANIMALID,
-            name :data[i].NAME,
-            category :data[i].CATEGORY, 
-            breed :data[i].BREED,
-            dob :data[i].DATEBORN,
-            gender :data[i].GENDER,
-            img :data[i].IMAGEFILE,
-            imgH :data[i].IMAGEHEIGHT, 
-            imgW :data[i].IMAGEWIDTH,
-            price :data[i].LISTPRICE,
-            photo :data[i].PHOTO,
-            reg: data[i].REGISTERED,
             
+            const Pet: Pet={
+                id :data[i].ANIMALID,
+                name :data[i].NAME,
+                category :data[i].CATEGORY, 
+                breed :data[i].BREED,
+                dob :data[i].DATEBORN,
+                gender :data[i].GENDER,
+                img :data[i].IMAGEFILE,
+                imgH :data[i].IMAGEHEIGHT, 
+                imgW :data[i].IMAGEWIDTH,
+                price :data[i].LISTPRICE,
+                photo :data[i].PHOTO,
+                reg: data[i].REGISTERED, 
+            }
+            console.log(Pet.name)
+            petsArr.push(Pet);
         }
-        console.log(Pet.name)
-            pets.push(Pet);
-        }
-        setPets(pets);
-       
+        setPets(petsArr);
+        console.log({pets});
     }
     const petCards = pets.map(Pet =>{
         return(
