@@ -15,6 +15,7 @@ const Navbar = () => {
       <div className='rightlinks'>
           <a href ="/cart">Cart</a>
           <a href ="/login">Login</a>
+          <a href ="/signup">Sign Up</a>
       </div>
     </nav>
   );
