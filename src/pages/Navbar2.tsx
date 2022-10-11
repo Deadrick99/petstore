@@ -3,11 +3,13 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Logo from './images/petstorelogo1.png'
 
 function Navbar2() {
   return (
     <Navbar expand="lg">
       <Container>
+        <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
         <Navbar.Brand href="/">PetStore.com</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
