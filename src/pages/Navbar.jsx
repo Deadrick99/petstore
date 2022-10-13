@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const userEmail = useSelector((state) => state.user.email);
   return (
     <nav className="navbar">
       <h1>PetStore.com</h1>
