@@ -7,11 +7,15 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
 import Pet from "./Pet";
-
+import Cat from "./images/Cat.png"
+ 
 
 function Pets () 
 {
     const [pets,setPets]= useState<Array<Pet>>([]);
+     var isImg = false;
+     var imgPath: string | undefined;
+     
     useEffect(()=>{
         const fetchPets = async() => {
             
@@ -26,32 +30,39 @@ function Pets ()
         let petsArr = new Array<Pet>; 
         for(let i = 0; i<data.length;i++)
         {
-            
+           
+            if (data[i].IMAGEFILE !== null){
+                isImg = true;
+            }
+            if(data[i].CATEGORY === "Cat"){
+           
             const Pet: Pet={
                 id :data[i].ANIMALID,
                 name :data[i].NAME,
                 category :data[i].CATEGORY, 
                 breed :data[i].BREED,
                 dob :data[i].DATEBORN,
-                gender :data[i].GENDER,
+                gender :data[i].GENDER, 
                 img :data[i].IMAGEFILE,
                 imgH :data[i].IMAGEHEIGHT, 
                 imgW :data[i].IMAGEWIDTH,
                 price :data[i].LISTPRICE,
-                photo :data[i].PHOTO,
+                photo :data[i].PHOTO, 
                 reg: data[i].REGISTERED, 
             }
+        
             console.log(Pet.category)
             petsArr.push(Pet);
         }
+    }
         setPets(petsArr);
         console.log({pets});
     }
     const petCards = pets.map(Pet =>{
         return(
-            <Col sm={3}>
-            <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Col sm={4} lg={3}>
+            <Card style={{ width:'18rem', height:'18rem' }}>
+            <Card.Img variant="top" src={Cat} style={{ width :'18rem',height:"8rem"}}/>
             <Card.Body>
                 <Card.Title>{Pet.name}</Card.Title>
                 <Card.Subtitle>{Pet.category}</Card.Subtitle>
