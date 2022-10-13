@@ -16,8 +16,8 @@ function Navbar2() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown title="Pets" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/Pets">Dogs</NavDropdown.Item>
-              <NavDropdown.Item href="/Pets">Cats</NavDropdown.Item>
+              <NavDropdown.Item href="/PetsDog">Dogs</NavDropdown.Item>
+              <NavDropdown.Item href="/PetsCat">Cats</NavDropdown.Item>
               <NavDropdown.Item href="/Pets">Other</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/Merchandise">Merchandise</Nav.Link>
