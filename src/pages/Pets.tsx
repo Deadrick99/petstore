@@ -41,7 +41,7 @@ function Pets ()
                 photo :data[i].PHOTO,
                 reg: data[i].REGISTERED, 
             }
-            console.log(Pet.name)
+            console.log(Pet.category)
             petsArr.push(Pet);
         }
         setPets(petsArr);
@@ -57,7 +57,14 @@ function Pets ()
                 <Card.Subtitle>{Pet.category}</Card.Subtitle>
                 <Card.Subtitle>{Pet.breed}</Card.Subtitle>
                 <Card.Subtitle>{Pet.gender}</Card.Subtitle>
+                <Row>
+                    <Col>
                 <Button variant="primary" href="/Adopt">Adopt me!</Button>
+                </Col>
+                 <Col>
+                <h4>${Pet.price}</h4>
+                </Col>
+                </Row>
             </Card.Body> 
             </Card>
             </Col>
