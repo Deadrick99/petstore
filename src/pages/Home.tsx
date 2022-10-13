@@ -2,16 +2,12 @@ import image from "./images/pets2.png";
 
 const Home = () => {
   return (
-    <div className="Home">
-
-    </div>
-    /*<div style={{ backgroundImage:`url(${image})`, 
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    width: '100vw',
-    height: '100vh'}}>
-    </div>*/
+    <body>
+      <div className="Home">  
+      <h1 className="text-center">Welcome to the Pet Store</h1>
+      </div>
+    </body>
+    
 );
 }
 

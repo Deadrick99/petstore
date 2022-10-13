@@ -23,7 +23,6 @@ function Navbar2() {
             <Nav.Link href="/Merchandise">Merchandise</Nav.Link>
             <Nav.Link href="/Suppliers">Suppliers</Nav.Link>
             <Nav.Link href="/Customers">Customers</Nav.Link>
-            <Nav.Link href="/Adopt">Adopt</Nav.Link>
           </Nav>
 
           <Nav className="ml-auto">
