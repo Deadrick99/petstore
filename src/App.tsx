@@ -12,7 +12,8 @@ import Login from "./pages/Login";
 import Page404 from "./pages/Page404";
 import SignUp from "./pages/SignUp";
 import Navbar from './pages/Navbar2';
-import Pets from "./pages/Pets";
+import PetsDog from "./pages/PetsDog";
+import PetsCat from "./pages/PetsCat";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -24,7 +25,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route  path="/Adopt" element={<Adopt/>}/>
           <Route path="/Login" element={<Login />} />
           <Route path="/Signup" element={<SignUp />} />
-          <Route path="/Pets" element={<Pets/>}/>
+          <Route path="/PetsDog" element={<PetsDog/>}/>
+          <Route path="/PetsCat" element={<PetsCat/>}/>
         </Route>
       </Routes>
     </BrowserRouter> 
