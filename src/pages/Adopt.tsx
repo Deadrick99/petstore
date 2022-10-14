@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import {basicSchema} from "../schemas/YupSchema"
+import backGround from "./images/pawprints.png"
 const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
   await new Promise ((resolve) => setTimeout(resolve,2000));
   actions.resetForm();
@@ -29,7 +30,7 @@ function Adopt() {
   return (
     <div
       className="color-overlay d-flex justify-content-center align-items-center"
-      style={{ height: "100vh", backgroundColor: "	#232b2b" }}
+      style={{ height: "100vh", backgroundImage:`url(${backGround})` }}
     >
       <Form onSubmit= {formik.handleSubmit} className="rounded p-4 p-sm-3">
         <Row>

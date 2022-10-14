@@ -7,10 +7,9 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
 import Pet from "./Pet";
-import Dog from "./images/dog.png"
+import Other from "./images/petstorelogo1.png"
 import CardGroup from "react-bootstrap/esm/CardGroup";
-import backGround from "./images/pawprints.png";
- 
+ import backGround from "./images/pawprints.png";
 
 function Pets () 
 {
@@ -36,7 +35,7 @@ function Pets ()
             if (data[i].IMAGEFILE !== null){
                 isImg = true;
             }
-            if(data[i].CATEGORY === "Dog"){
+            if(data[i].CATEGORY !== "Cat" && data[i].CATEGORY !== "Dog"){
            
             const Pet: Pet={
                 id :data[i].ANIMALID,
@@ -62,11 +61,11 @@ function Pets ()
     }
     const petCards = pets.map(Pet =>{
         return(
-            <Col sm={4} lg={3} className = "m-3 mx-auto p-3" >
-            <Card  style={{ width:'100%', height:'100%', boxShadow:'10px 5px 5px black' }}>
-            <Card.Img variant="top" src={Dog} style={{ width :'100%',height:"10rem"}}/>
+            <Col sm={4} lg={3} className = "m-3 mx-auto p-3">
+            <Card style={{ width:'100%', height:'100%' , boxShadow:'10px 5px 5px black'}}>
+            <Card.Img variant="top" src={Other} style={{ width :'100%',height:"10rem"}}/>
             <Card.Body>
-               <Row>
+                <Row>
                  <Col>  
                  <Card.Title> Name:</Card.Title>
                 </Col>
@@ -98,7 +97,6 @@ function Pets ()
                 <Card.Subtitle>{Pet.gender}</Card.Subtitle>
                 </Col>
                 </Row>
-                
                 <Row>
                     <Col>
                 <Button variant="primary" href="/Adopt">Adopt me!</Button>
@@ -115,13 +113,11 @@ function Pets ()
     }) 
     return(
         <div style={{backgroundImage:`url(${backGround})`}}>
-            
-           <Row fluid className="mx-auto" >
-            <CardGroup >
+           <Row fluid className=" mx-auto">
+            <CardGroup>
             {petCards}
             </CardGroup>
             </Row> 
-            
         </div>
     )
 }
