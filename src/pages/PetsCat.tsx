@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
 import Pet from "./Pet";
 import Cat from "./images/Cat.png"
+import { CardGroup } from "react-bootstrap";
  
 
 function Pets () 
@@ -60,14 +61,42 @@ function Pets ()
     }
     const petCards = pets.map(Pet =>{
         return(
-            <Col sm={4} lg={3}>
-            <Card style={{ width:'18rem', height:'18rem' }}>
-            <Card.Img variant="top" src={Cat} style={{ width :'18rem',height:"8rem"}}/>
-            <Card.Body>
+            <Col sm={4} lg={3} className = "m-3 mx-auto p-3">
+            <Card style={{ width:'100%', height:'100%' }}>
+            <Card.Img variant="top" src={Cat} style={{ width :'100%',height:"10rem"}}/>
+            <Card.Body style= {{alignItems: 'center', justifyContent: 'center'}} >
+                <Row>
+                 <Col>  
+                 <Card.Title> Name:</Card.Title>
+                </Col>
+                <Col>
                 <Card.Title>{Pet.name}</Card.Title>
+                </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    <Card.Subtitle>Animal Type:</Card.Subtitle>
+                    </Col>
+                 <Col>  
                 <Card.Subtitle>{Pet.category}</Card.Subtitle>
+                </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    <Card.Subtitle>Animal Breed:</Card.Subtitle>
+                    </Col>
+                 <Col>  
                 <Card.Subtitle>{Pet.breed}</Card.Subtitle>
+                </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    <Card.Subtitle>Animal Gender:</Card.Subtitle>
+                    </Col>
+                 <Col>  
                 <Card.Subtitle>{Pet.gender}</Card.Subtitle>
+                </Col>
+                </Row>
                 <Row>
                     <Col>
                 <Button variant="primary" href="/Adopt">Adopt me!</Button>
@@ -84,9 +113,10 @@ function Pets ()
     }) 
     return(
         <div>
-           <Row>
+           <Row fluid className="m-3 mx-auto">
+            <CardGroup>
             {petCards}
-            
+            </CardGroup>
             </Row> 
         </div>
     )

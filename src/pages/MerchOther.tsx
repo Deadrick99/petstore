@@ -1,4 +1,3 @@
-import React from "react";
 import Axios from "axios";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card"
@@ -6,21 +5,22 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
-import Pet from "./Pet";
-import Dog from "./images/dog.png"
+
+import Other from "./images/petstorelogo1.png"
 import CardGroup from "react-bootstrap/esm/CardGroup";
+import Merch from "./Merch";
  
 
 function Pets () 
 {
-    const [pets,setPets]= useState<Array<Pet>>([]);
+    const [merch,setMerch]= useState<Array<Merch>>([]);
      var isImg = false;
      var imgPath: string | undefined;
      
     useEffect(()=>{
         const fetchPets = async() => {
             
-                const response = await Axios.get("http://petstoretest-production.up.railway.app/api/animals");
+                const response = await Axios.get("http://petstoretest-production.up.railway.app/api/merchandise");
                 initPets(response.data)
                 console.log("hi")
         }
@@ -28,49 +28,43 @@ function Pets ()
     },[]) 
     const initPets = (data: string | any[])=>
     {
-        let petsArr = new Array<Pet>; 
+        let merchArr = new Array<Merch>; 
         for(let i = 0; i<data.length;i++)
         {
            
             if (data[i].IMAGEFILE !== null){
                 isImg = true;
             }
-            if(data[i].CATEGORY === "Dog"){
+            if(data[i].CATEGORY !== "Dog" && data[i].CATEGORY !== "Cat"){
            
-            const Pet: Pet={
+            const Merch: Merch={
                 id :data[i].ANIMALID,
-                name :data[i].NAME,
+                description :data[i].DESCRIPTION,
                 category :data[i].CATEGORY, 
-                breed :data[i].BREED,
-                dob :data[i].DATEBORN,
-                gender :data[i].GENDER, 
-                img :data[i].IMAGEFILE,
-                imgH :data[i].IMAGEHEIGHT, 
-                imgW :data[i].IMAGEWIDTH,
+                quantity : data[i].QUANTITY,
                 price :data[i].LISTPRICE,
-                photo :data[i].PHOTO, 
-                reg: data[i].REGISTERED, 
+                
             }
         
-            console.log(Pet.category)
-            petsArr.push(Pet);
+            console.log(Merch.category)
+            merchArr.push(Merch);
         }
     }
-        setPets(petsArr);
-        console.log({pets});
+        setMerch(merchArr);
+        console.log({merch});
     }
-    const petCards = pets.map(Pet =>{
+    const petCards = merch.map(Merch =>{
         return(
             <Col sm={4} lg={3} className = "m-3 mx-auto p-3" >
             <Card  style={{ width:'100%', height:'100%' }}>
-            <Card.Img variant="top" src={Dog} style={{ width :'100%',height:"10rem"}}/>
+            <Card.Img variant="top" src={Other} style={{ width :'100%',height:"10rem"}}/>
             <Card.Body>
                <Row>
                  <Col>  
-                 <Card.Title> Name:</Card.Title>
+                 <Card.Title> Description:</Card.Title>
                 </Col>
                 <Col>
-                <Card.Title>{Pet.name}</Card.Title>
+                <Card.Title>{Merch.description}</Card.Title>
                 </Col>
                 </Row>
                 <Row>
@@ -78,32 +72,15 @@ function Pets ()
                     <Card.Subtitle>Animal Type:</Card.Subtitle>
                     </Col>
                  <Col>  
-                <Card.Subtitle>{Pet.category}</Card.Subtitle>
+                <Card.Subtitle>{Merch.category}</Card.Subtitle>
                 </Col>
                 </Row>
                 <Row>
                     <Col>
-                    <Card.Subtitle>Animal Breed:</Card.Subtitle>
-                    </Col>
-                 <Col>  
-                <Card.Subtitle>{Pet.breed}</Card.Subtitle>
-                </Col>
-                </Row>
-                <Row>
-                    <Col>
-                    <Card.Subtitle>Animal Gender:</Card.Subtitle>
-                    </Col>
-                 <Col>  
-                <Card.Subtitle>{Pet.gender}</Card.Subtitle>
-                </Col>
-                </Row>
-                
-                <Row>
-                    <Col>
-                <Button variant="primary" href="/Adopt">Adopt me!</Button>
+                <Button variant="primary" >Add to cart</Button>
                 </Col>
                  <Col>
-                <h4>${Pet.price}</h4>
+                <h4>${Merch.price}</h4>
                 </Col>
                 </Row>
             </Card.Body> 

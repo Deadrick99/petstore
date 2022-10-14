@@ -17,9 +17,13 @@ function Navbar2() {
             <NavDropdown title="Pets" id="basic-nav-dropdown">
               <NavDropdown.Item href="/PetsDog">Dogs</NavDropdown.Item>
               <NavDropdown.Item href="/PetsCat">Cats</NavDropdown.Item>
-              <NavDropdown.Item href="/Pets">Other</NavDropdown.Item>
+              <NavDropdown.Item href="/PetsOther">Other</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/Merchandise">Merchandise</Nav.Link>
+            <NavDropdown title="Merchandise" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/MerchDog">Dog Merch</NavDropdown.Item>
+              <NavDropdown.Item href="/MerchCat">Cat Merch</NavDropdown.Item>
+              <NavDropdown.Item href="/MerchOther">Other Merch</NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link href="/Suppliers">Suppliers</Nav.Link>
             <Nav.Link href="/Customers">Customers</Nav.Link>
           </Nav>

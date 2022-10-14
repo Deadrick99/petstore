@@ -14,6 +14,10 @@ import SignUp from "./pages/SignUp";
 import Navbar from './pages/Navbar2';
 import PetsDog from "./pages/PetsDog";
 import PetsCat from "./pages/PetsCat";
+import PetsOther from "./pages/PetsOther";
+import MerchDog from "./pages/MerchDog";
+import MerchCat from "./pages/MerchCat";
+import MerchOther from "./pages/MerchOther"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -27,6 +31,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/Signup" element={<SignUp />} />
           <Route path="/PetsDog" element={<PetsDog/>}/>
           <Route path="/PetsCat" element={<PetsCat/>}/>
+          <Route path="/PetsOther" element={<PetsOther/>}/>
+          <Route path="/MerchDog" element={<MerchDog/>}/>
+          <Route path="/MerchCat" element={<MerchCat/>}/>
+          <Route path="/MerchOther" element={<MerchOther/>}/>
         </Route>
       </Routes>
     </BrowserRouter> 
