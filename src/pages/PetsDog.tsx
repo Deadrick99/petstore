@@ -9,6 +9,7 @@ import { useEffect,useState } from "react";
 import Pet from "./Pet";
 import Dog from "./images/dog.png"
 import CardGroup from "react-bootstrap/esm/CardGroup";
+import backGround from "./images/pawprints.png";
  
 
 function Pets () 
@@ -62,7 +63,7 @@ function Pets ()
     const petCards = pets.map(Pet =>{
         return(
             <Col sm={4} lg={3} className = "m-3 mx-auto p-3" >
-            <Card  style={{ width:'100%', height:'100%' }}>
+            <Card  style={{ width:'100%', height:'100%', boxShadow:'10px 5px 5px black' }}>
             <Card.Img variant="top" src={Dog} style={{ width :'100%',height:"10rem"}}/>
             <Card.Body>
                <Row>
@@ -113,9 +114,9 @@ function Pets ()
         )
     }) 
     return(
-        <div>
+        <div style={{backgroundImage:`url(${backGround})`}}>
             
-           <Row fluid className="m-3 mx-auto">
+           <Row fluid className="mx-auto" >
             <CardGroup >
             {petCards}
             </CardGroup>
