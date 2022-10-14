@@ -16,8 +16,7 @@
 body .Home {
   background-image: url('src\pages\images\pawprints.png');
   height: 100vh;
-  background-position: center;
-  background-repeat: repeat;
+  overflow: hidden;
 }
 
 .navbar {
@@ -42,10 +41,6 @@ body .Home {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
-}
-
-.medium-box {
-  max-width: 600px;
 }
 
 body {

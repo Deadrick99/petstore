@@ -7,7 +7,7 @@ import Logo from './images/petstorelogo1.png'
 
 function Navbar2() {
   return (
-    <Navbar expand="lg">
+    <Navbar sticky="top" expand="lg" bg="white">
       <Container>
         <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
         <Navbar.Brand href="/">PetStore.com</Navbar.Brand>
