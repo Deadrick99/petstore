@@ -3,14 +3,24 @@ import {useEffect, useState} from "react";
 import Col from "react-bootstrap/esm/Col";
 import Card from "react-bootstrap/esm/Card";
 import Row from "react-bootstrap/esm/Row";
+import { useAppDispatch, useAppSelector} from "../redux/hooks"
+import {setVisited} from "../redux/visited";
+
 const Home = () => {
-  const [visited, useVistited] = useState(false);
+  const visited = useAppSelector((state) => state.visited.visited);
+  const dispatch = useAppDispatch();
   useEffect(()=>{
-  console.log("increment vistor");
-},[visited])
+    if (visited === false)
+    {
+    dispatch(setVisited());
+    console.log('user visited')
+    console.log(visited);
+    }
+    console.log("hi")
+},[])
   return (
        <body>
-      <div className="Home">  
+      <div className="Home" >  
       <div className="row align-items-center vh-100">
       <Col sm={3} lg={2} className = "m-3 mx-auto p-3">
             <Card style={{ textAlign: 'center', width:'100%', height:'100%', boxShadow:'10px 5px 5px black' }}>
