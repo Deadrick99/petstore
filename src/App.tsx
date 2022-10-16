@@ -17,15 +17,13 @@ import PetsCat from "./pages/PetsCat";
 import PetsOther from "./pages/PetsOther";
 import MerchDog from "./pages/MerchDog";
 import MerchCat from "./pages/MerchCat";
-import MerchOther from "./pages/MerchOther "
+import MerchOther from "./pages/MerchOther";
 
 import "./App.css";
 
 import store from './redux/store';
 
-import "./App.css";
 
-import store from './redux/store';
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -36,20 +34,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <Route index element={<Home />} />
             <Route path="*" element={<Page404 />} />
             <Route  path="/Adopt" element={<Adopt/>}/>
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
-   
-          </Route>
-        </Routes>
-      </BrowserRouter> 
-    </Provider> 
-    <BrowserRouter>
-      <Routes>
-        <Route  path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="*" element={<Page404 />} />
-          <Route  path="/Adopt" element={<Adopt/>}/>
-          <Route path="/Login" element={<Login />} />
+           <Route path="/Login" element={<Login />} />
           <Route path="/Signup" element={<SignUp />} />
           <Route path="/PetsDog" element={<PetsDog/>}/>
           <Route path="/PetsCat" element={<PetsCat/>}/>
@@ -57,8 +42,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/MerchDog" element={<MerchDog/>}/>
           <Route path="/MerchCat" element={<MerchCat/>}/>
           <Route path="/MerchOther" element={<MerchOther/>}/>
-        </Route>
-      </Routes>
-    </BrowserRouter> 
+          </Route>
+        </Routes>
+      </BrowserRouter> 
+    </Provider> 
   </React.StrictMode>
 );
