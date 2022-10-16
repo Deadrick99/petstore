@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row';
 import { z } from 'zod';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import backGround from "./images/pawprints.png";
+
 
 
 const FormGroupClass = 'mb-3';
@@ -64,7 +66,8 @@ const Login = () => {
         event.preventDefault();
     };
 
-    return (
+    return ( 
+        <div style={{backgroundImage:`url(${backGround})`}}>
         <Container>
             <Row className='justify-content-center'>
                 <Col md={7}>
@@ -117,6 +120,7 @@ const Login = () => {
                 </Col>
             </Row>
         </Container>
+        </div>
     )
 };
   

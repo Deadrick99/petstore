@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import { z } from 'zod';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
+import backGround from "./images/pawprints.png";
 
 const FormGroupClass = 'mb-3';
 const Params = ['email', 'password']
@@ -170,6 +171,7 @@ const SignUp = () => {
     };
 
     return (
+        <div style={{backgroundImage:`url(${backGround})`}}>
         <Container>
             <Row className='justify-content-center'>
                 <Col md={7}>
@@ -252,6 +254,7 @@ const SignUp = () => {
                 </Col>
             </Row>
         </Container>
+        </div>
     )
 };
 
