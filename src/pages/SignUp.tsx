@@ -10,8 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
 import backGround from "./images/pawprints.png";
 
-const FormGroupClass = 'mb-3';
-const Params = ['email', 'password']
+const FormGroupClass = 'm-2';
+const Params = ['email', 'password'];
 const Schemas = {
     email: z.string({
         required_error: 'Email should be non-empty',
@@ -27,7 +27,7 @@ const Schemas = {
     }),
 };
 
-const API_URL = "http://localhost:3000/api/signup"
+const API_URL = "http://localhost:3000/api/signup";
 
 /**
  * create and manage the operation of the sign up page
@@ -172,88 +172,88 @@ const SignUp = () => {
 
     return (
         <div style={{backgroundImage:`url(${backGround})`}}>
-        <Container>
-            <Row className='justify-content-center'>
-                <Col md={7}>
-                    <Form>
-                        {/**
-                         * Email Address Field
-                         */}
-                        <Form.Group className={FormGroupClass} controlId='formSigUpEmail'>
-                            <Form.Label>Email Address</Form.Label>
-                            <Form.Control
-                                type='email'
-                                placeholder='Enter your email address...'
-                                value={form.email.value}
-                                onChange={(e) => setFieldValue('email', e.target.value)}
-                                isInvalid={!form.email.isValid}
-                            />
-                            {!form.email.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.email.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
+            <Container className="vh-100 d-flex flex-column">
+                <Row className='justify-content-center p-3'>
+                    <Col md={7} className='justify-content-center'>
+                        <Form>
+                            {/**
+                             * Email Address Field
+                             */}
+                            <Form.Group className={FormGroupClass} controlId='formSigUpEmail'>
+                                <Form.Label>Email Address</Form.Label>
+                                <Form.Control
+                                    type='email'
+                                    placeholder='Enter your email address...'
+                                    value={form.email.value}
+                                    onChange={(e) => setFieldValue('email', e.target.value)}
+                                    isInvalid={!form.email.isValid}
+                                />
+                                {!form.email.isValid &&
+                                    <Form.Text className='text-danger'>
+                                        {form.email.message}
+                                    </Form.Text>
+                                }
+                            </Form.Group>
 
-                        {/**
-                         * Password Field
-                        */}
-                        <Form.Group className={FormGroupClass} controlId='formSignUpPassword'>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder='Enter your password...'
-                                value={form.password.value}
-                                onChange={(e) => setFieldValue('password', e.target.value)}
-                                isInvalid={!form.password.isValid}
-                            />
-                            {!form.password.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.password.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
+                            {/**
+                             * Password Field
+                            */}
+                            <Form.Group className={FormGroupClass} controlId='formSignUpPassword'>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder='Enter your password...'
+                                    value={form.password.value}
+                                    onChange={(e) => setFieldValue('password', e.target.value)}
+                                    isInvalid={!form.password.isValid}
+                                />
+                                {!form.password.isValid &&
+                                    <Form.Text className='text-danger'>
+                                        {form.password.message}
+                                    </Form.Text>
+                                }
+                            </Form.Group>
 
-                        {/**
-                         * Password Verification Field
-                        */}
-                        <Form.Group className={FormGroupClass} controlId='formSignUpPasswordVerify'>
-                            <Form.Label>Password Verification</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder='Enter your password again...'
-                                value={form.password_verify.value}
-                                onChange={(e) => setFieldValue('password_verify', e.target.value)}
-                                isInvalid={!form.password_verify.isValid}
-                            />
-                            {!form.password_verify.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.password_verify.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
+                            {/**
+                             * Password Verification Field
+                            */}
+                            <Form.Group className={FormGroupClass} controlId='formSignUpPasswordVerify'>
+                                <Form.Label>Password Verification</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder='Enter your password again...'
+                                    value={form.password_verify.value}
+                                    onChange={(e) => setFieldValue('password_verify', e.target.value)}
+                                    isInvalid={!form.password_verify.isValid}
+                                />
+                                {!form.password_verify.isValid &&
+                                    <Form.Text className='text-danger'>
+                                        {form.password_verify.message}
+                                    </Form.Text>
+                                }
+                            </Form.Group>
 
-                        {/**
-                         * Server Error Messages
-                        */}
-                        <Form.Group className={FormGroupClass} controlId='formServerResponses'>
-                            {!form.server_response.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.server_response.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
+                            {/**
+                             * Server Error Messages
+                            */}
+                            <Form.Group className={FormGroupClass} controlId='formServerResponses'>
+                                {!form.server_response.isValid &&
+                                    <Form.Text className='text-danger'>
+                                        {form.server_response.message}
+                                    </Form.Text>
+                                }
+                            </Form.Group>
 
-                        {/**
-                         * Buttons
-                         */}
-                        <Button variant='primary' type="submit" onClick={handleSubmit}>
-                            Submit
-                        </Button>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
+                            {/**
+                             * Buttons
+                             */}
+                            <Button className="m-2" variant='primary' type="submit" onClick={handleSubmit}>
+                                Sign Up
+                            </Button>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 };
