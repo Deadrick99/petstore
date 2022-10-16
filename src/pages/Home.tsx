@@ -1,13 +1,26 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card"
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from 'react-bootstrap/Container';
+import image from "./images/pets2.png";
+import {useEffect, useState} from "react";
+import Col from "react-bootstrap/esm/Col";
+import Card from "react-bootstrap/esm/Card";
+import Row from "react-bootstrap/esm/Row";
+import { useAppDispatch, useAppSelector} from "../redux/hooks"
+import {setVisited} from "../redux/visited";
 
 const Home = () => {
+  const visited = useAppSelector((state) => state.visited.visited);
+  const dispatch = useAppDispatch();
+  useEffect(()=>{
+    if (visited === false)
+    {
+    dispatch(setVisited());
+    console.log('user visited')
+    console.log(visited);
+    }
+    console.log("hi")
+},[])
   return (
-    <body>
-      <div className="Home">  
+       <body>
+      <div className="Home" >  
       <div className="row align-items-center vh-100">
       <Col sm={3} lg={2} className = "m-3 mx-auto p-3">
             <Card style={{ textAlign: 'center', width:'100%', height:'100%', boxShadow:'10px 5px 5px black' }}>
@@ -21,6 +34,9 @@ const Home = () => {
       </div>
       </div>
     </body>
+     
+    
+    
 );
 }
 

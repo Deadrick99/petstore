@@ -1,3 +1,4 @@
+import Axios from "axios";
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -5,44 +6,18 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { z } from 'zod';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router-dom";
 import backGround from "./images/pawprints.png";
 
 const FormGroupClass = 'mb-3';
-const Params = ['address', 'city', 'email', 'first_name', 'last_name',
-    'password', 'password_verify', 'phone_number', 'state', 'zip_code'
-]
+const Params = ['email', 'password']
 const Schemas = {
-    address: z.string({
-        required_error: 'Address is required',
-        invalid_type_error: 'Address should be a string'
-    }).trim().min(1, {
-        message: 'Address should be non-empty'
-    }),
-    city: z.string({
-        required_error: 'City is required',
-        invalid_type_error: 'City should be a string'
-    }).trim().min(1, {
-        message: 'City should be non-empty'
-    }),
     email: z.string({
         required_error: 'Email should be non-empty',
         invalid_type_error: 'Email must be a string'
     }).trim().email({
         message: 'Email should be a valid address'
-    }),
-    first_name: z.string({
-        required_error: 'First Name is required',
-        invalid_type_error: 'First Name should be a string'
-    }).trim().min(1, {
-        message: 'First Name should be non-empty'
-    }),
-    last_name: z.string({
-        required_error: 'Last Name is required',
-        invalid_type_error: 'Last Name should be a string'
-    }).trim().min(1, {
-        message: 'Last Name should be non-empty'
     }),
     password: z.string({
         required_error: 'Password is required',
@@ -50,48 +25,30 @@ const Schemas = {
     }).trim().min(5, {
         message: 'Password should be non-empty'
     }),
-    password_verify: z.string({
-        required_error: 'Password is required',
-        invalid_type_error: 'Password must be a string'
-    }).trim().min(5, {
-        message: 'Password Verify should be non-empty'
-    }),
-    phone_number: z.string({
-        required_error: 'Phone number is required',
-        invalid_type_error: 'Phone number should be a string'
-    }).trim().min(1, {
-        message: 'Phone number should be non-empty'
-    }),
-    state: z.string({
-        required_error: 'State is required',
-        invalid_type_error: 'State should be a string'
-    }).trim().min(1, {
-        message: 'State should be non-empty'
-    }),
-    zip_code: z.string({
-        required_error: 'Zip Code is required',
-        invalid_type_error: 'Zip Code should be a string'
-    }).trim().min(1, {
-        message: 'Zip Code should be non-empty'
-    }),
 };
 
-const SignUp = () => {
+const API_URL = "http://localhost:3000/api/signup"
 
-    const initState = { error: null, isValid: true, message: '', value: ''};
+/**
+ * create and manage the operation of the sign up page
+ * 
+ * @returns a tsx website that represents the structure behind the sign-up page
+ */
+const SignUp = () => {
+    const navigate = useNavigate();
     const [form, setForm] = useState({
-        address:         { error: null, isValid: true, message: '', value: ''},
-        city:            { error: null, isValid: true, message: '', value: ''},
         email:           { error: null, isValid: true, message: '', value: ''},
-        first_name:      { error: null, isValid: true, message: '', value: ''},
-        last_name:       { error: null, isValid: true, message: '', value: ''},
         password:        { error: null, isValid: true, message: '', value: ''},
         password_verify: { error: null, isValid: true, message: '', value: ''},
-        phone_number:    { error: null, isValid: true, message: '', value: ''},
-        state:           { error: null, isValid: true, message: '', value: ''},
-        zip_code:        { error: null, isValid: true, message: '', value: ''}
+        server_response: { error: null, isValid: true, message: '', value: ''},
     });
 
+    /**
+     * update the specified field's value with the argued value
+     * 
+     * @param field: a string that specifies the desired fields
+     * @param value: an object that represents the new value for the field
+     */
     const setFieldValue = (field: string, value: any) => {
         var f = form;
         var fieldKey = field as keyof typeof form;
@@ -99,6 +56,14 @@ const SignUp = () => {
         setForm({...f});
     }
     
+    /**
+     * update all sub-fields within a specified form field except the value
+     * 
+     * @param field: a string that specifies the desired field
+     * @param error: any type of error object from the most recent manipulation
+     * @param isValid: a boolean that specifies if the field if value
+     * @param message: a message that verbally describes the error
+     */
     const updateField = (field: string, error: any, isValid: boolean, message: string) => {
         var f = form;
         var fieldKey = field as keyof typeof form;
@@ -108,7 +73,59 @@ const SignUp = () => {
         setForm({...f});
     }
 
+    /**
+     * submit the user's desired account information to the backend
+     * 
+     * @returns null
+     */
+    const submitForm = async () => {
+        
+        let response;
+        try
+        {
+            response = await Axios.post(
+                API_URL, {
+                    email: String(form.email.value),
+                    password: String(form.password.value)
+                }
+            )
+            updateField(
+                'server_response',
+                response,
+                true,
+                response.data
+            );
+
+            /**
+             * Assuming the aforementioned code ran without error, we can
+             * safely assume the account was successfully created so we can
+             * redirect to the login page
+             */
+            navigate('/login')
+        }
+        catch (error: any)
+        {
+            updateField(
+                'server_response',
+                error.response,
+                false,
+                error.response.data
+            );
+            return
+        }
+    }
+
+    /**
+     * process the form's information following submission
+     * 
+     * @param event: a button click event from the submit button
+     */
     const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        let valid: boolean = true;
+
+        /**
+         * Validate all form fields except for the password verification field
+         */
         Params.forEach(function (field, _) {
             var schemaKey = field as keyof typeof Schemas;
             var formKey = field as keyof typeof form;
@@ -119,8 +136,36 @@ const SignUp = () => {
                 updateField(field, null, true, '');
             } catch(error: any) {
                 updateField(field, error, false, String(error.issues[0].message));
+                valid = false;
             }
         })
+
+        /**
+         * Validate the password verification field
+         */
+        if (form.password.value != form.password_verify.value)
+        {
+            let error_message = "Passwords do not match."
+            updateField(
+                'password_verify',
+                EvalError(error_message),
+                false, 
+                error_message
+            );
+            valid = false;
+        }
+        else
+        {
+            updateField('password_verify', null, true, '');
+        }
+        
+        /**
+         * If the form is valid, submit the username and password to the 
+         * backend to attempt to make an account
+         */
+        if (valid == true) { 
+            submitForm(); 
+        }
 
         event.preventDefault();
     };
@@ -131,139 +176,6 @@ const SignUp = () => {
             <Row className='justify-content-center'>
                 <Col md={7}>
                     <Form>
-                        {/**
-                         * First Name
-                         */}
-                        <Form.Group className={FormGroupClass} controlId='formFirstName'>
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control
-                                type='text'
-                                placeholder='Enter your first name...'
-                                value={form.first_name.value}
-                                onChange={(e) => setFieldValue('first_name', e.target.value)}
-                                isInvalid={!form.first_name.isValid}
-                            />
-                            {!form.first_name.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.first_name.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
-
-                        {/**
-                         * Last Name
-                         */}
-                        <Form.Group className={FormGroupClass} controlId='formLastName'>
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control
-                                type='text'
-                                placeholder='Enter your last name...'
-                                value={form.last_name.value}
-                                onChange={(e) => setFieldValue('last_name', e.target.value)}
-                                isInvalid={!form.last_name.isValid}
-                            />
-                            {!form.last_name.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.last_name.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
-
-                        {/**
-                         * Phone Number
-                         */}
-                        <Form.Group className={FormGroupClass} controlId="formPhoneNumber">
-                            <Form.Label>Phone Number</Form.Label>
-                            <Form.Control
-                                type='tel'
-                                placeholder='123-456-7890'
-                                value={form.phone_number.value}
-                                onChange={(e) => setFieldValue('phone_number', e.target.value)}
-                                isInvalid={!form.phone_number.isValid}
-                             />
-                            {!form.phone_number.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.phone_number.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
-
-                        {/**
-                         * Address
-                         */}
-                        <Form.Group className={FormGroupClass} controlId="formAddress">
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control
-                                type='text'
-                                placeholder='Enter your physical address...'
-                                value={form.address.value}
-                                onChange={(e) => setFieldValue('address', e.target.value)}
-                                isInvalid={!form.address.isValid}
-                            />
-                            {!form.address.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.address.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
-
-                        {/**
-                         * City
-                         */}
-                        <Form.Group className={FormGroupClass} controlId="formCity">
-                            <Form.Label>City</Form.Label>
-                            <Form.Control
-                                type='text'
-                                placeholder='Enter your city...'
-                                value={form.city.value}
-                                onChange={(e) => setFieldValue('city', e.target.value)}
-                                isInvalid={!form.address.isValid}
-                            />
-                            {!form.city.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.city.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
-
-                        {/**
-                         * State
-                         */}
-                        <Form.Group className={FormGroupClass} controlId="formState">
-                            <Form.Label>State</Form.Label>
-                            <Form.Control
-                                type='text'
-                                placeholder='Enter your state...'
-                                value={form.state.value}
-                                onChange={(e) => setFieldValue('state', e.target.value)}
-                                isInvalid={!form.state.isValid}
-                            />
-                            {!form.state.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.state.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
-
-                        {/**
-                         * Zip Code
-                         */}
-                        <Form.Group className={FormGroupClass} controlId="formZipCode">
-                            <Form.Label>Zip Code</Form.Label>
-                            <Form.Control
-                                type='number'
-                                placeholder='Enter your zip code...'
-                                value={form.zip_code.value}
-                                onChange={(e) => setFieldValue('zip_code', e.target.value)}
-                                isInvalid={!form.zip_code.isValid}
-                            />
-                            {!form.zip_code.isValid &&
-                                <Form.Text className='text-danger'>
-                                    {form.zip_code.message}
-                                </Form.Text>
-                            }
-                        </Form.Group>
-
                         {/**
                          * Email Address Field
                          */}
@@ -317,6 +229,17 @@ const SignUp = () => {
                             {!form.password_verify.isValid &&
                                 <Form.Text className='text-danger'>
                                     {form.password_verify.message}
+                                </Form.Text>
+                            }
+                        </Form.Group>
+
+                        {/**
+                         * Server Error Messages
+                        */}
+                        <Form.Group className={FormGroupClass} controlId='formServerResponses'>
+                            {!form.server_response.isValid &&
+                                <Form.Text className='text-danger'>
+                                    {form.server_response.message}
                                 </Form.Text>
                             }
                         </Form.Group>

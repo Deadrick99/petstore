@@ -4,25 +4,39 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from './images/petstorelogo1.png'
-
+import {LinkContainer} from 'react-router-bootstrap'
 function Navbar2() {
   return (
     <Navbar sticky="top" expand="lg" bg="white">
       <Container>
         <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
-        <Navbar.Brand href="/">PetStore.com</Navbar.Brand>
+        <LinkContainer to = {"/"}>
+        <Navbar.Brand>PetStore.com</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Pets" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/PetsDog">Dogs</NavDropdown.Item>
-              <NavDropdown.Item href="/PetsCat">Cats</NavDropdown.Item>
-              <NavDropdown.Item href="/PetsOther">Other</NavDropdown.Item>
+              <LinkContainer to = {'/PetsDog'}>
+              <NavDropdown.Item >Dogs</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to = {'/PetsCat'}>
+              <NavDropdown.Item >Cats</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to = {'/PetsOther'}>
+              <NavDropdown.Item >Other</NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown>
             <NavDropdown title="Merchandise" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/MerchDog">Dog Merch</NavDropdown.Item>
-              <NavDropdown.Item href="/MerchCat">Cat Merch</NavDropdown.Item>
-              <NavDropdown.Item href="/MerchOther">Other Merch</NavDropdown.Item>
+               <LinkContainer to = {'/MerchDog'}>
+              <NavDropdown.Item >Dog Merch</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to = {'/MerchCat'}>
+              <NavDropdown.Item >Cat Merch</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to = {'/MerchOther'}>
+              <NavDropdown.Item >Other Merch</NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown>
             <Nav.Link href="/Suppliers">Suppliers</Nav.Link>
             <Nav.Link href="/Customers">Customers</Nav.Link>
