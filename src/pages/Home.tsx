@@ -6,6 +6,9 @@ import Row from "react-bootstrap/esm/Row";
 import { useAppDispatch, useAppSelector} from "../redux/hooks"
 import {setVisited} from "../redux/visited";
 import { useDispatch, useSelector } from "react-redux";
+import { setViews } from "../redux/views";
+import {setStart} from "../redux/time";
+import { setPageStart } from "../redux/pageTime";
 
 const Home = () => {
   /**
@@ -24,6 +27,11 @@ const Home = () => {
       console.log('user visited')
       console.log(visited);
     }
+    dispatch(setViews());
+    dispatch(setStart());
+    var d = new Date();
+    dispatch(setPageStart(d.getTime()));
+
     console.log("Current User: " + userEmail);
     console.log("Current User Token: " + userToken);
 },[])
