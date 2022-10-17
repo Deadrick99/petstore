@@ -11,7 +11,6 @@ import Login from "./pages/Login";
 import Page404 from "./pages/Page404";
 import SignUp from "./pages/SignUp";
 
-import Navbar from './pages/Navbar2';
 import PetsDog from "./pages/PetsDog";
 import PetsCat from "./pages/PetsCat";
 import PetsOther from "./pages/PetsOther";
