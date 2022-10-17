@@ -5,6 +5,9 @@ import Card from "react-bootstrap/esm/Card";
 import Row from "react-bootstrap/esm/Row";
 import { useAppDispatch, useAppSelector} from "../redux/hooks"
 import {setVisited} from "../redux/visited";
+import { setViews } from "../redux/views";
+import {setStart} from "../redux/time";
+import { setPageStart } from "../redux/pageTime";
 
 const Home = () => {
   const visited = useAppSelector((state) => state.visited.visited);
@@ -16,7 +19,11 @@ const Home = () => {
     console.log('user visited')
     console.log(visited);
     }
-    console.log("hi")
+    dispatch(setViews());
+    dispatch(setStart());
+    var d = new Date();
+    dispatch(setPageStart(d.getTime()));
+
 },[])
   return (
        <body>
