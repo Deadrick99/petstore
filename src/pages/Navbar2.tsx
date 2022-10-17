@@ -21,10 +21,10 @@ function Navbar2() {
     var d = new Date();
     dispatch(setPageEnd(d.getTime()));
     dispatch(setPageTotal());
-    console.log(`Secounds on page: ${pageTime /1000}`)
+    console.log(`Seconds on page: ${pageTime /1000}`)
   }
   return(
-    <Navbar expand="lg">
+    <Navbar sticky="top" expand="lg" bg="white">
       <Container>
         <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
         <LinkContainer to = {"/"}>
