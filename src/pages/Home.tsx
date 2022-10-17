@@ -8,7 +8,7 @@ import {setVisited} from "../redux/visited";
 import { useDispatch, useSelector } from "react-redux";
 import { setViews } from "../redux/views";
 import {setStart} from "../redux/time";
-import { setPageStart } from "../redux/pageTime";
+import { setPageStart } from "../redux/pageTime"; 
 
 const Home = () => {
   /**
@@ -25,7 +25,6 @@ const Home = () => {
     {
       dispatch(setVisited());
       console.log('user visited')
-      console.log(visited);
     }
     dispatch(setViews());
     dispatch(setStart());
@@ -36,7 +35,7 @@ const Home = () => {
     console.log("Current User Token: " + userToken);
 },[])
   return (
-       <body>
+       
       <div className="Home" >  
       <div className="row align-items-center vh-100">
       <Col sm={3} lg={2} className = "m-3 mx-auto p-3">
@@ -50,7 +49,7 @@ const Home = () => {
       </Col>
       </div>
       </div>
-    </body>
+    
      
     
     

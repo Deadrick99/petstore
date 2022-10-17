@@ -4,11 +4,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const viewsSlice = createSlice({
     name: 'views',
     initialState: {
-       views: 0
+       views: 1
     },
     reducers: {
         setViews: (state) => {
-           state.views += state.views;
+           state.views ++;
         },
      
     },
