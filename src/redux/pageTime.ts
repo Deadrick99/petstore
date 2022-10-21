@@ -10,11 +10,14 @@ export const pageTimeSlice = createSlice({
     },
     reducers: {
         setPageStart: (state,action) => {
-           state.startPageTime = action.payload;
-           
+           return {
+            ... state.startPageTime =action.payload
+           }
         },
         setPageEnd :(state,action) => {
-           state.startPageTime = action.payload;
+            return {
+            ... state.endPageTime =action.payload
+           }
            
         },
         setPageTotal :(state) => {

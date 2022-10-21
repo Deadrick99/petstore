@@ -23,7 +23,7 @@ function Pets ()
             
                 const response = await Axios.get("http://petstoretest-production.up.railway.app/api/animals");
                 initPets(response.data)
-                console.log("hi")
+               
         }
         fetchPets();
     },[]) 
@@ -53,16 +53,15 @@ function Pets ()
                 reg: data[i].REGISTERED, 
             }
         
-            console.log(Pet.category)
             petsArr.push(Pet);
         }
     }
         setPets(petsArr);
-        console.log({pets});
+       
     }
     const petCards = pets.map(Pet =>{
         return(
-            <Col sm={4} lg={3} className = "m-3 mx-auto p-3" >
+            <Col sm={4} lg={3} className = "m-3 mx-auto p-3" key={Pet.id} >
             <Card  style={{ width:'100%', height:'100%', boxShadow:'10px 5px 5px black' }}>
             <Card.Img variant="top" src={Dog} style={{ width :'100%',height:"10rem"}}/>
             <Card.Body>
@@ -116,7 +115,7 @@ function Pets ()
     return(
         <div style={{backgroundImage:`url(${backGround})`}}>
             
-           <Row fluid className="mx-auto" >
+           <Row  className="mx-auto" >
             <CardGroup >
             {petCards}
             </CardGroup>

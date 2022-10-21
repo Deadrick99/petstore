@@ -19,23 +19,25 @@ import MerchCat from "./pages/MerchCat";
 import MerchOther from "./pages/MerchOther";
 
 import "./App.css";
-
+import { useAppDispatch, useAppSelector} from "./redux/hooks"
 import store from './redux/store';
 
-addEventListener('unload', (event) => { });
-{/* <Provider store={store}>
-  <div>
-  onunload = (event) => { 
-  console.log("unloading")
+var startDate = new Date();
+const beforeunload = function(){
+  const endDate = new Date();
+  const totalTime = endDate.getTime() - startDate.getTime();
+  console.log(`Time spent this session in secounds ${totalTime/1000}`);
+   
    const time = Date.now();
-    while ((Date.now() - time) < 5000) {
+  while ((Date.now() - time) < 2000) {
 
     }
-  };
-</div>
-</Provider> */}
+}
+window.addEventListener('beforeunload', beforeunload);
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+  
+  
     <Provider store={ store }>
       <BrowserRouter>
         <Routes>
@@ -55,5 +57,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </Routes>
       </BrowserRouter> 
     </Provider> 
-  </React.StrictMode>
+ 
 );

@@ -12,7 +12,7 @@ import CardGroup from "react-bootstrap/esm/CardGroup";
 import Merch from "./Merch";
  import backGround from "./images/pawprints.png";
 
-function Pets () 
+function Merchs () 
 {
     const [merch,setMerch]= useState<Array<Merch>>([]);
      var isImg = false;
@@ -23,7 +23,7 @@ function Pets ()
             
                 const response = await Axios.get("http://petstoretest-production.up.railway.app/api/merchandise");
                 initPets(response.data)
-                console.log("hi")
+              
         }
         fetchPets();
     },[]) 
@@ -47,16 +47,16 @@ function Pets ()
                 
             }
         
-            console.log(Merch.category)
+         
             merchArr.push(Merch);
         }
     }
         setMerch(merchArr);
-        console.log({merch});
+      
     }
     const petCards = merch.map(Merch =>{
         return(
-            <Col sm={4} lg={3} className = "m-3 mx-auto p-3" >
+            <Col sm={4} lg={3} className = "m-3 mx-auto p-3" key={Merch.id} >
             <Card  style={{ width:'100%', height:'100%' , boxShadow:'10px 5px 5px black'}}>
             <Card.Img variant="top" src={Dog} style={{ width :'100%',height:"10rem"}}/>
             <Card.Body>
@@ -93,7 +93,7 @@ function Pets ()
     return(
         <div style={{backgroundImage:`url(${backGround})`}}>
             
-           <Row fluid className="mx-auto">
+           <Row  className="mx-auto">
             <CardGroup >
             {petCards}
             </CardGroup>
@@ -103,4 +103,4 @@ function Pets ()
     )
 }
 
-export default Pets;
+export default Merchs;

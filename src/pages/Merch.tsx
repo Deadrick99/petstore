@@ -4,6 +4,7 @@ interface Merch  {
              quantity:number; 
              category :string;
              price: string;
+             
   }
 
 

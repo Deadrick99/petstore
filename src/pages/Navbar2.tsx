@@ -7,21 +7,25 @@ import Logo from './images/petstorelogo1.png'
 import {LinkContainer} from 'react-router-bootstrap'
 import { useAppDispatch, useAppSelector} from "../redux/hooks"
 import { setBounced } from "../redux/bounced";
-import { setViews } from "../redux/views";
+import  { setViews } from "../redux/views";
 import { setPageEnd, setPageTotal } from "../redux/pageTime";
 function Navbar2() {
    const bounced = useAppSelector((state) => state.bounced.bounced);
-   const pageTime = useAppSelector((state) => state.pageTime.totalTime)
+   const pageTime = useAppSelector((state) => state.pageTime.totalTime);
+   const views = useAppSelector((state) =>state.views.views);
    const dispatch = useAppDispatch();
   function click()
-  {
-    if (bounced === true)
-      dispatch(setBounced());
-    dispatch(setViews());
-    var d = new Date();
+  { 
+    var d= new Date();
     dispatch(setPageEnd(d.getTime()));
-    dispatch(setPageTotal());
-    console.log(`Seconds on page: ${pageTime /1000}`)
+    dispatch (setPageTotal());
+    console.log({pageTime})
+    if (bounced === true){
+      dispatch(setBounced());
+      console.log("User did not bounce");
+    }
+    dispatch(setViews());
+    console.log(`pageviews ${views}`)
   }
   return(
     <Navbar sticky="top" expand="lg" bg="white">
