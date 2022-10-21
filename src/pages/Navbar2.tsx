@@ -4,6 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from './images/petstorelogo1.png'
+import Moon from './images/moon.png'
+import Sun from './images/sun.png'
 import {LinkContainer} from 'react-router-bootstrap'
 import { useAppDispatch, useAppSelector} from "../redux/hooks"
 import { setBounced } from "../redux/bounced";
@@ -66,6 +68,7 @@ function Navbar2() {
           <Nav className="ml-auto">
             <Nav.Link href="/Login" onClick= {() =>click()}>Login</Nav.Link>
             <Nav.Link href="/Signup" onClick= {() =>click()}>Sign Up</Nav.Link>
+            <Navbar.Brand onClick= {() =>click()}><img height="auto" className="img-responsive"src={Moon} alt="dark-mode"></img></Navbar.Brand>
           </Nav>
         </Navbar.Collapse>
       </Container>
