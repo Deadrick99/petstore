@@ -28,7 +28,7 @@ function Navbar2() {
     console.log(`pageviews ${views}`)
   }
   return(
-    <Navbar expand="lg">
+    <Navbar sticky="top" expand="lg" bg="white">
       <Container>
         <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
         <LinkContainer to = {"/"}>
