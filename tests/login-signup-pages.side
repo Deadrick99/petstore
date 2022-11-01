@@ -1,0 +1,656 @@
+{
+  "id": "c3238d70-e7cd-4b0b-b70a-19af4fdbd677",
+  "version": "2.0",
+  "name": "petstore-frontend-tests",
+  "url": "http://localhost:5173/",
+  "tests": [{
+    "id": "a8c7b93e-7667-4a55-84cd-f3e052194fea",
+    "name": "Login Page - Account with the associated email does not exist",
+    "commands": [{
+      "id": "848d2831-6cba-44ee-be91-61151cf7d41f",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:5173/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e35015f0-86d2-4cd2-aab9-5eb0a8978cef",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1033x1285",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5029394a-fc8f-42d6-a93a-eed26a44ae1a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Login",
+      "targets": [
+        ["linkText=Login", "linkText"],
+        ["css=.ml-auto > .nav-link:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Login')]", "xpath:link"],
+        ["xpath=//div[@id='basic-navbar-nav']/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Login')]", "xpath:href"],
+        ["xpath=//nav/div/div/div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "26cd3cd8-a390-428b-9ab2-ed9a96e56f81",
+      "comment": "",
+      "command": "click",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6fc652cf-6bb9-4cdd-bc8e-55419e9ba07d",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "janedoe@hotmail.com"
+    }, {
+      "id": "f8cc60b5-13ce-4d3c-a357-8e1a9b28504e",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "53673f9a-83dc-47bc-bc33-4f51be21b0cf",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "7c1f1dc7-1c49-463f-8243-78caf9d460da",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-danger",
+      "targets": [
+        ["css=.text-danger", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[3]/small", "xpath:idRelative"],
+        ["xpath=//small", "xpath:position"],
+        ["xpath=//small[contains(.,'An account associated with this email was not found.')]", "xpath:innerText"]
+      ],
+      "value": "An account associated with this email was not found."
+    }, {
+      "id": "825884f5-43d6-4ff8-b194-06c0b0215ef7",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "d8fa9ed6-764c-4812-9e70-3decf704624e",
+    "name": "Login Page - Valid Flow",
+    "commands": [{
+      "id": "1f9872f7-b362-4963-9a1b-6e2720f6a504",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:5173/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5fc495f6-8d0d-4d3a-b01e-d7e431332d15",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1033x1285",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4358be33-7500-452d-bb10-38b58b85c61c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Login",
+      "targets": [
+        ["linkText=Login", "linkText"],
+        ["css=.ml-auto > .nav-link:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Login')]", "xpath:link"],
+        ["xpath=//div[@id='basic-navbar-nav']/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Login')]", "xpath:href"],
+        ["xpath=//nav/div/div/div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a3df2091-7c71-40ac-93b6-c28d9166d170",
+      "comment": "",
+      "command": "click",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9ff0975-ca63-4aac-8b59-3561bdbfcc34",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@petstore.com"
+    }, {
+      "id": "48a12153-2119-47d2-8b0a-041eed164dc0",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "32cd30f4-c4c9-4f60-bf79-28512a09bcdb",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "7851f854-b3d4-4394-937b-b793b6914e6e",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "ec7e89dc-de14-4a6d-877d-ccb0bf4ce6dc",
+    "name": "Login Page - Password is Invalid",
+    "commands": [{
+      "id": "3b6d0670-6d1f-4f76-8380-92d34de58cde",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:5173/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f9fd5a5b-26f0-477e-8c87-9d25b464aa4c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1033x1285",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "44808f80-eb41-4f2a-9f2c-34af9ebcdc76",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Login",
+      "targets": [
+        ["linkText=Login", "linkText"],
+        ["css=.ml-auto > .nav-link:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Login')]", "xpath:link"],
+        ["xpath=//div[@id='basic-navbar-nav']/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Login')]", "xpath:href"],
+        ["xpath=//nav/div/div/div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8df0ad5a-3f6a-44ec-b050-14c08e06484b",
+      "comment": "",
+      "command": "click",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a190f280-4b69-47b3-9a00-a22c41aa3a3c",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@petstore.com"
+    }, {
+      "id": "f34ac6cf-5adf-48f8-9ce4-4e5983e6619b",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "incorrect_password"
+    }, {
+      "id": "fd888547-a671-4efb-b1d7-34c859f11cb5",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "269d89be-5136-4781-aece-2d8b1121372a",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-danger",
+      "targets": [
+        ["css=.text-danger", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[3]/small", "xpath:idRelative"],
+        ["xpath=//small", "xpath:position"],
+        ["xpath=//small[contains(.,'This password is incorrect.')]", "xpath:innerText"]
+      ],
+      "value": "This password is incorrect."
+    }, {
+      "id": "e4f2660b-d074-45b3-873d-e6f501d52156",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "7cfae6b7-ffef-416f-b7a8-31fe00b7e94e",
+    "name": "Sign-in Page - Valid Flow",
+    "commands": [{
+      "id": "486320ba-61b9-4865-b0be-32eed0ba4595",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:5173/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cf82d8ef-af64-4adc-9db0-5a20f00f4ef5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1028x1285",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8406ba8a-23f5-4d87-80ae-d53cb4e079f2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sign Up",
+      "targets": [
+        ["linkText=Sign Up", "linkText"],
+        ["css=.nav-link:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Sign Up')]", "xpath:link"],
+        ["xpath=//div[@id='basic-navbar-nav']/div[2]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Signup')]", "xpath:href"],
+        ["xpath=//div[2]/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "25579fac-76f4-4ea6-a1e6-f3ebb7291b0f",
+      "comment": "",
+      "command": "click",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c2cc027-4bc5-4b41-ac18-36a1f04d36bd",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin1@petstore.com"
+    }, {
+      "id": "9549f775-e0aa-46df-976b-ca7c4f57f6bb",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "55b488af-e3d6-4e41-bb56-6c52a290dabc",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPasswordVerify",
+      "targets": [
+        ["id=formSignUpPasswordVerify", "id"],
+        ["css=#formSignUpPasswordVerify", "css:finder"],
+        ["xpath=//input[@id='formSignUpPasswordVerify']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "bcdef066-8337-4a67-8c2a-1c2d912a3364",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c773aee6-4605-4a63-8c78-a05619f6d4c9",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "a66d2150-efb6-4f0c-ae33-3078ce6a1f4b",
+    "name": "Sign-in Page - Account with the specified email already exists",
+    "commands": [{
+      "id": "d3b3f46b-a789-414f-941b-49bb74b7fc10",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:5173/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c43b9037-7a42-455c-9bcf-dfd208019623",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1028x1285",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f722bfda-36e5-4c3d-8db0-3c13de87f2dd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sign Up",
+      "targets": [
+        ["linkText=Sign Up", "linkText"],
+        ["css=.nav-link:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Sign Up')]", "xpath:link"],
+        ["xpath=//div[@id='basic-navbar-nav']/div[2]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Signup')]", "xpath:href"],
+        ["xpath=//div[2]/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3afdeda-e609-45e7-9f78-a516a764aa72",
+      "comment": "",
+      "command": "click",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f0634b0-4b4f-451c-8c73-4cfe7177b2ea",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@petstore.com"
+    }, {
+      "id": "94c48f7d-8c5a-48fb-a507-eff05953c9f1",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "aa393df0-dd7a-49e9-88e1-0b11b61e779b",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPasswordVerify",
+      "targets": [
+        ["id=formSignUpPasswordVerify", "id"],
+        ["css=#formSignUpPasswordVerify", "css:finder"],
+        ["xpath=//input[@id='formSignUpPasswordVerify']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "98953d11-dc3e-4285-9002-2f594707bca3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "95e2d7ec-0e5f-412b-9701-808c7c4851d8",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-danger",
+      "targets": [
+        ["css=.text-danger", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[4]/small", "xpath:idRelative"],
+        ["xpath=//small", "xpath:position"],
+        ["xpath=//small[contains(.,'An account associated with this email already exists.')]", "xpath:innerText"]
+      ],
+      "value": "An account associated with this email already exists."
+    }, {
+      "id": "2beed861-2b39-410e-9487-004493ec8dcd",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "df6b4280-9577-49c5-b27c-35f2a71ca796",
+    "name": "Sign-in Page - Passwords do not match",
+    "commands": [{
+      "id": "4ebfcbaf-6121-4256-8854-5c6dc9eb8203",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:5173/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9a585588-ef05-48bb-91c9-2b9fbb91dea2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1028x1285",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8dc5b696-5af5-4477-a009-4073f7daf26e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sign Up",
+      "targets": [
+        ["linkText=Sign Up", "linkText"],
+        ["css=.nav-link:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Sign Up')]", "xpath:link"],
+        ["xpath=//div[@id='basic-navbar-nav']/div[2]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Signup')]", "xpath:href"],
+        ["xpath=//div[2]/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1ef8f3d-de36-4ad9-8c34-3a6b9c236ce9",
+      "comment": "",
+      "command": "click",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "31979c2a-5ad0-4edc-add0-6c1a83926689",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSigUpEmail",
+      "targets": [
+        ["id=formSigUpEmail", "id"],
+        ["css=#formSigUpEmail", "css:finder"],
+        ["xpath=//input[@id='formSigUpEmail']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin1@petstore.com"
+    }, {
+      "id": "7d6e46df-2440-4f2b-b775-e8c20888e66d",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPassword",
+      "targets": [
+        ["id=formSignUpPassword", "id"],
+        ["css=#formSignUpPassword", "css:finder"],
+        ["xpath=//input[@id='formSignUpPassword']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "91f1d05c-b6f5-4ccb-aed8-497dc1d33622",
+      "comment": "",
+      "command": "type",
+      "target": "id=formSignUpPasswordVerify",
+      "targets": [
+        ["id=formSignUpPasswordVerify", "id"],
+        ["css=#formSignUpPasswordVerify", "css:finder"],
+        ["xpath=//input[@id='formSignUpPasswordVerify']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "matchingpassword"
+    }, {
+      "id": "9338a034-8cc1-4a72-84f8-f48811cb1066",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0add56b8-7872-49f8-9a03-8391e63d0e41",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-danger",
+      "targets": [
+        ["css=.text-danger", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/div/form/div[3]/small", "xpath:idRelative"],
+        ["xpath=//small", "xpath:position"],
+        ["xpath=//small[contains(.,'Passwords do not match.')]", "xpath:innerText"]
+      ],
+      "value": "Passwords do not match."
+    }, {
+      "id": "8cc4341e-ed86-47a5-b8c9-c70c8422f18e",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "fb6102a7-8706-4ad9-ae1e-67294c8e6dea",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a8c7b93e-7667-4a55-84cd-f3e052194fea"]
+  }],
+  "urls": ["http://localhost:5173/"],
+  "plugins": []
+}
