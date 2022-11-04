@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Logo from './images/petstorelogo1.png'
+import Logo from './images/petparadiselogo1.png'
 import Moon from './images/moon.png'
 import Sun from './images/sun.png'
 import {LinkContainer} from 'react-router-bootstrap'
@@ -34,7 +34,7 @@ function Navbar2() {
       <Container>
         <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
         <LinkContainer to = {"/"}>
-        <Navbar.Brand onClick= {() =>click()}> PetStore.com</Navbar.Brand>
+        <Navbar.Brand onClick= {() =>click()}> Pet Paradise </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -68,7 +68,6 @@ function Navbar2() {
           <Nav className="ml-auto">
             <Nav.Link href="/Login" onClick= {() =>click()}>Login</Nav.Link>
             <Nav.Link href="/Signup" onClick= {() =>click()}>Sign Up</Nav.Link>
-            <Navbar.Brand onClick= {() =>click()}><img height="auto" className="img-responsive"src={Moon} alt="dark-mode"></img></Navbar.Brand>
           </Nav>
         </Navbar.Collapse>
       </Container>

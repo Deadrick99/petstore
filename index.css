@@ -14,8 +14,6 @@
 }
 
 body .Home {
-  background-image: url('src\pages\images\pawprints.png');
-  height: 100vh;
   overflow: hidden;
 }
 
@@ -41,6 +39,16 @@ body .Home {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+h1,
+h2 {
+  text-shadow: 2px 2px #000000;
 }
 
 body {
