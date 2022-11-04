@@ -10,6 +10,7 @@ import Pet from "./Pet";
 import Dog from "./images/dog.png"
 import CardGroup from "react-bootstrap/esm/CardGroup";
 import backGround from "./images/pawprints.png";
+import { formatCurrency } from "./utilities/formatCurrency";
  
 
 function Pets () 
@@ -103,7 +104,7 @@ function Pets ()
                 <Button variant="primary" href="/Adopt">Adopt me!</Button>
                 </Col>
                  <Col>
-                <h4>${Pet.price}</h4>
+                <h4>{formatCurrency(parseInt(Pet.price))}</h4>
                 </Col>
                 </Row>
             </Card.Body> 

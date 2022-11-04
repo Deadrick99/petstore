@@ -21,6 +21,7 @@ import MerchOther from "./pages/MerchOther";
 import "./App.css";
 import { useAppDispatch, useAppSelector} from "./redux/hooks"
 import store from './redux/store';
+import { ShoppingCartProvider } from "./pages/ShoppingCartContext";
 
 var startDate = new Date();
 const beforeunload = function(){
@@ -37,7 +38,7 @@ window.addEventListener('beforeunload', beforeunload);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   
-  
+  <ShoppingCartProvider>
     <Provider store={ store }>
       <BrowserRouter>
         <Routes>
@@ -57,5 +58,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </Routes>
       </BrowserRouter> 
     </Provider> 
- 
+ </ShoppingCartProvider>
 );
