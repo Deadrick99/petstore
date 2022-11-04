@@ -15,7 +15,7 @@ const store = configureStore({
         bounced: bouncedReducer,
         views: viewsReducer,
         time :timeReducer,
-        pageTime:timeReducer
+        pageTime:pageTimeReducer
     }
 });
 

@@ -8,6 +8,7 @@ export const visitedSlice = createSlice({
     },
     reducers: {
         setVisited: (state) => {
+            console.log("setvisited");
            state.visited = true;
         },
      
