@@ -34,7 +34,7 @@ function Navbar2() {
   }
   return(
     
-    <Navbar expand="lg">
+    <Navbar expand="lg" className="sticky-top bg-light" >
       <Container>
         <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
         <LinkContainer to = {"/"}>
