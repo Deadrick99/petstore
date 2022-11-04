@@ -3,7 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Logo from './images/petstorelogo1.png'
+import Logo from './images/petparadiselogo1.png'
+import Moon from './images/moon.png'
+import Sun from './images/sun.png'
 import {LinkContainer} from 'react-router-bootstrap'
 import { useAppDispatch, useAppSelector} from "../redux/hooks"
 import { setBounced } from "../redux/bounced";
@@ -38,7 +40,7 @@ function Navbar2() {
       <Container>
         <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
         <LinkContainer to = {"/"}>
-        <Navbar.Brand onClick= {() =>click()}> PetStore.com</Navbar.Brand>
+        <Navbar.Brand onClick= {() =>click()}> Pet Paradise </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
