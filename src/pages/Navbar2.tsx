@@ -9,11 +9,15 @@ import { useAppDispatch, useAppSelector} from "../redux/hooks"
 import { setBounced } from "../redux/bounced";
 import  { setViews } from "../redux/views";
 import { setPageEnd, setPageTotal } from "../redux/pageTime";
+import { Button } from "react-bootstrap";
+import {FaPaw} from "react-icons/fa";
+import { useShoppingCart } from "./ShoppingCartContext";
 function Navbar2() {
    const bounced = useAppSelector((state) => state.bounced.bounced);
-   const pageTime = useAppSelector((state) => state.pageTime.totalTime);
+   const pageTime = useAppSelector((state) => state.pageTime.totalPageTime);
    const views = useAppSelector((state) =>state.views.views);
    const dispatch = useAppDispatch();
+   const {openCart, cartQuantity} = useShoppingCart()
   function click()
   { 
     var d= new Date();
@@ -26,8 +30,10 @@ function Navbar2() {
     }
     dispatch(setViews());
     console.log(`pageviews ${views}`)
+    
   }
   return(
+    
     <Navbar expand="lg">
       <Container>
         <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
@@ -66,6 +72,8 @@ function Navbar2() {
           <Nav className="ml-auto">
             <Nav.Link href="/Login" onClick= {() =>click()}>Login</Nav.Link>
             <Nav.Link href="/Signup" onClick= {() =>click()}>Sign Up</Nav.Link>
+            <Button  className= "rounded-circle" onClick={openCart}><FaPaw></FaPaw><div className="rounded-circle bg-danger d-flex justify-content-center align-items-center" 
+            style ={{color:'white', width :"1.25rem", height:"1.25rem",position: "absolute", bottom:18, transform:"translate(60%,0%)"}}>{cartQuantity}</div></Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

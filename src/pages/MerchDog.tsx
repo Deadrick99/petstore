@@ -9,8 +9,9 @@ import { useEffect,useState } from "react";
 
 import Dog from "./images/dog.png"
 import CardGroup from "react-bootstrap/esm/CardGroup";
-import Merch from "./Merch";
+import Merch, { MerchItem } from "./Merch";
  import backGround from "./images/pawprints.png";
+import { formatCurrency } from "./utilities/formatCurrency";
 
 function Merchs () 
 {
@@ -29,6 +30,7 @@ function Merchs ()
     },[]) 
     const initPets = (data: string | any[])=>
     {
+        
         let merchArr = new Array<Merch>; 
         for(let i = 0; i<data.length;i++)
         {
@@ -39,65 +41,36 @@ function Merchs ()
             if(data[i].CATEGORY === "Dog"){
            
             const Merch: Merch={
-                id :data[i].ANIMALID,
+                id :data[i].ITEMID,
                 description :data[i].DESCRIPTION,
                 category :data[i].CATEGORY, 
                 quantity : data[i].QUANTITY,
                 price :data[i].LISTPRICE,
-                
+                cartAmount: 0,
+                imgURL: Dog
             }
-        
          
+            
             merchArr.push(Merch);
         }
     }
         setMerch(merchArr);
       
     }
-    const petCards = merch.map(Merch =>{
-        return(
-            <Col sm={4} lg={3} className = "m-3 mx-auto p-3" key={Merch.id} >
-            <Card  style={{ width:'100%', height:'100%' , boxShadow:'10px 5px 5px black'}}>
-            <Card.Img variant="top" src={Dog} style={{ width :'100%',height:"10rem"}}/>
-            <Card.Body>
-               <Row>
-                 <Col>  
-                 <Card.Title> Description:</Card.Title>
-                </Col>
-                <Col>
-                <Card.Title>{Merch.description}</Card.Title>
-                </Col>
-                </Row>
-                <Row>
-                    <Col>
-                    <Card.Subtitle>Animal Type:</Card.Subtitle>
-                    </Col>
-                 <Col>  
-                <Card.Subtitle>{Merch.category}</Card.Subtitle>
-                </Col>
-                </Row>
-                <Row>
-                    <Col>
-                <Button variant="primary" href="/Adopt">Add to cart</Button>
-                </Col>
-                 <Col>
-                <h4>${Merch.price}</h4>
-                </Col>
-                </Row>
-            </Card.Body> 
-            </Card>
-            </Col>
-            
-        )
-    }) 
+   
     return(
         <div style={{backgroundImage:`url(${backGround})`}}>
             
-           <Row  className="mx-auto">
-            <CardGroup >
-            {petCards}
-            </CardGroup>
+           
+             <Row  className="mx-auto">
+            {merch.map(item =>(
+            <Col sm={4} lg={3} className = "m-3 mx-auto p-3" key={item.id} >
+             <MerchItem {...item}></MerchItem>
+            </Col>
+            
+             ))}
             </Row> 
+            
             
         </div>
     )
