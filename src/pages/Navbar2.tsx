@@ -38,7 +38,9 @@ function Navbar2() {
     
     <Navbar expand="lg" className="sticky-top bg-light" >
       <Container>
-        <img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" />
+        <LinkContainer to = {"/"}>
+        <Navbar.Brand onClick= {() =>click()}><img width="70px" height="auto" className="img-responsive" src={Logo} alt="logo" /></Navbar.Brand>
+        </LinkContainer>
         <LinkContainer to = {"/"}>
         <Navbar.Brand onClick= {() =>click()}> Pet Paradise </Navbar.Brand>
         </LinkContainer>

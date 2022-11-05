@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
 
-import Other from "./images/petstorelogo1.png"
+import Other from "./images/merch.png"
 import CardGroup from "react-bootstrap/esm/CardGroup";
 import Merch, { MerchItem } from "./Merch";
- import backGround from "./images/pawprints.png";
+ import backGround from "./images/bg2.png";
 import { formatCurrency } from "./utilities/formatCurrency";
 
 function Merchs () 

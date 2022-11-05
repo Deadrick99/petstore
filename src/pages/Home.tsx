@@ -11,6 +11,7 @@ import { setViews } from "../redux/views";
 import {setStart} from "../redux/time";
 import { setPageStart } from "../redux/pageTime"; 
 import Carousel from 'react-bootstrap/Carousel';
+import backGround from "./images/bg2.png";
 
 const Home = () => {
   /**
@@ -37,7 +38,7 @@ const Home = () => {
     console.log("Current User Token: " + userToken);
 },[])
   return (
-       
+      <div style={{backgroundImage:`url(${backGround})`}}>
       <div className="Home" >  
       <Carousel>
       <Carousel.Item>
@@ -76,6 +77,7 @@ const Home = () => {
             </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      </div>
       </div>
 );
 }

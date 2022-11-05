@@ -9,7 +9,7 @@ import { useEffect,useState } from "react";
 import Pet from "./Pet";
 import Cat from "./images/Cat.png"
 import { CardGroup } from "react-bootstrap";
- import backGround from "./images/pawprints.png";
+ import backGround from "./images/bg2.png";
 import { formatCurrency } from "./utilities/formatCurrency";
 
 function Pets () 

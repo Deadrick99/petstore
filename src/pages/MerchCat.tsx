@@ -4,8 +4,9 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
 import Cat from "./images/Cat.png"
+import CatMerch from "./images/CatMerch.png"
 import Merch, { MerchItem } from "./Merch";
- import backGround from "./images/pawprints.png";
+import backGround from "./images/bg2.png";
 
 function Merchs () 
 {
@@ -41,7 +42,7 @@ function Merchs ()
                 quantity : data[i].QUANTITY,
                 price :data[i].LISTPRICE,
                 cartAmount: 0,
-                imgURL: Cat
+                imgURL: CatMerch
             }
             
         
