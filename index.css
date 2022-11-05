@@ -33,7 +33,7 @@ body .Home {
   padding: 4px;
 }
 .navbar a:hover {
-  color: #ff0000;
+  color: #2773c9;
 }
 .content {
   max-width: 600px;
@@ -41,9 +41,14 @@ body .Home {
   padding: 20px;
 }
 
-.carousel-control-next,
+/*.carousel-control-next,
 .carousel-control-prev {
     filter: invert(100%);
+}*/
+
+.carousel-item img {
+  border-left: 3px solid #f2f2f2;
+  border-right: 3px solid #f2f2f2;
 }
 
 h1,

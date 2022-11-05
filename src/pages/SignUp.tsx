@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 import { z } from 'zod';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
-import backGround from "./images/pawprints.png";
+import backGround from "./images/bg2.png";
 
 const FormGroupClass = 'm-2';
 const Params = ['email', 'password'];

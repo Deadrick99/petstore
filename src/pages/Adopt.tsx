@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import {basicSchema} from "../schemas/YupSchema"
-import backGround from "./images/pawprints.png"
+import backGround from "./images/bg2.png";
 const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
   await new Promise ((resolve) => setTimeout(resolve,2000));
   actions.resetForm();

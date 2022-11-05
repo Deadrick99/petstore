@@ -9,7 +9,7 @@ import { z } from 'zod';
 import { useNavigate } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import backGround from "./images/pawprints.png";
+import backGround from "./images/bg2.png";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setEmail, setToken } from "../redux/user";

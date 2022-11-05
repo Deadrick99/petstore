@@ -8,9 +8,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
 
 import Dog from "./images/dog.png"
+import DogMerch from "./images/dogmerch.png"
 import CardGroup from "react-bootstrap/esm/CardGroup";
 import Merch, { MerchItem } from "./Merch";
- import backGround from "./images/pawprints.png";
+ import backGround from"./images/bg2.png";
 import { formatCurrency } from "./utilities/formatCurrency";
 
 function Merchs () 
@@ -47,7 +48,7 @@ function Merchs ()
                 quantity : data[i].QUANTITY,
                 price :data[i].LISTPRICE,
                 cartAmount: 0,
-                imgURL: Dog
+                imgURL: DogMerch
             }
          
             

@@ -7,9 +7,9 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect,useState } from "react";
 import Pet from "./Pet";
-import Other from "./images/petstorelogo1.png"
+import Other from "./images/petparadiselogo2.png"
 import CardGroup from "react-bootstrap/esm/CardGroup";
- import backGround from "./images/pawprints.png";
+ import backGround from "./images/bg2.png";
 import { formatCurrency } from "./utilities/formatCurrency";
 
 function Pets () 
