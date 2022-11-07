@@ -8,7 +8,7 @@ export const viewsSlice = createSlice({
     },
     reducers: {
         setViews: (state) => {
-           state.views ++;
+            state.views ++;
         },
      
     },
