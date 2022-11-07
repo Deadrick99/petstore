@@ -1,16 +1,16 @@
 import image from "./images/pets2.png";
-import image2 from "./images/petstorelogo1.png";
-import {useEffect, useState} from "react";
+import image2 from "./images/petStoreLogo1.png";
+import { useEffect, useState } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Card from "react-bootstrap/esm/Card";
 import Row from "react-bootstrap/esm/Row";
-import { useAppDispatch, useAppSelector} from "../redux/hooks"
-import {setVisited} from "../redux/visited";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setVisited } from "../redux/visited";
 import { useDispatch, useSelector } from "react-redux";
 import { setViews } from "../redux/views";
-import {setStart} from "../redux/time";
-import { setPageStart } from "../redux/pageTime"; 
-import Carousel from 'react-bootstrap/Carousel';
+import { setStart } from "../redux/time";
+import { setPageStart } from "../redux/pageTime";
+import Carousel from "react-bootstrap/Carousel";
 import backGround from "./images/bg2.png";
 
 const Home = () => {
@@ -23,11 +23,10 @@ const Home = () => {
   const userToken = useSelector((state: any) => state.user.token);
   const visited = useAppSelector((state) => state.visited.visited);
   const dispatch = useAppDispatch();
-  useEffect(()=>{
-    if (visited === false)
-    {
+  useEffect(() => {
+    if (visited === false) {
       dispatch(setVisited());
-      console.log('user visited')
+      console.log("user visited");
     }
     dispatch(setViews());
     dispatch(setStart());
@@ -36,12 +35,12 @@ const Home = () => {
 
     console.log("Current User: " + userEmail);
     console.log("Current User Token: " + userToken);
-},[])
+  }, []);
   return (
-      <div style={{backgroundImage:`url(${backGround})`}}>
-      <div className="Home" >  
-      <Carousel>
-      <Carousel.Item>
+    <div style={{ backgroundImage: `url(${backGround})` }}>
+      <div className="Home">
+        <Carousel>
+          <Carousel.Item>
             <img
               className="d-block mx-auto"
               style={{ height: 800 }}
@@ -51,8 +50,8 @@ const Home = () => {
             <Carousel.Caption>
               <h1>Thank you for visiting our website!</h1>
             </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
+          </Carousel.Item>
+          <Carousel.Item>
             <img
               className="d-block mx-auto"
               style={{ height: 800 }}
@@ -63,8 +62,8 @@ const Home = () => {
               <h1>Find your next best friend</h1>
               <h2>Adoption applications are open now!</h2>
             </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
+          </Carousel.Item>
+          <Carousel.Item>
             <img
               className="d-block mx-auto"
               style={{ height: 800 }}
@@ -75,11 +74,11 @@ const Home = () => {
               <h1>Need some merch?</h1>
               <h2>Check out our selection of collars, kennels, and more!</h2>
             </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+          </Carousel.Item>
+        </Carousel>
       </div>
-      </div>
-);
-}
+    </div>
+  );
+};
 
 export default Home;
