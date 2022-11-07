@@ -8,6 +8,10 @@
 
 `npm run build` To build a deployable version of the site
 
+### Testing
+
+`npm run test:unit` to run unit tests with Vitest
+
 ### Potential Site Metrics
 
 1. Page Views
