@@ -11,6 +11,7 @@ import Cat from "./images/cat.png";
 import { CardGroup } from "react-bootstrap";
 import backGround from "./images/bg2.png";
 import { formatCurrency } from "./utilities/formatCurrency";
+import { LinkContainer } from "react-router-bootstrap";
 
 function Pets() {
   const [pets, setPets] = useState<Array<Pet>>([]);
@@ -91,9 +92,11 @@ function Pets() {
             </Row>
             <Row>
               <Col>
-                <Button variant="primary" href="/Adopt">
+              <LinkContainer to={"/Adopt"}>
+                <Button variant="primary">
                   Adopt me!
                 </Button>
+                </LinkContainer>
               </Col>
               <Col>
                 <h4>{formatCurrency(parseInt(Pet.price))}</h4>
