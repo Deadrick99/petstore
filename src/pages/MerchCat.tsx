@@ -15,7 +15,7 @@ function Merchs() {
 
   useEffect(() => {
     const fetchPets = async () => {
-      const response = await Axios.get("http://petstoretest-production.up.railway.app/api/merchandise");
+      const response = await Axios.get("https://petstoretest-production.up.railway.app/api/merchandise");
       initPets(response.data);
     };
     fetchPets();
