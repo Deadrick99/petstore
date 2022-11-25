@@ -73,12 +73,16 @@ function Navbar2() {
           </Nav>
 
           <Nav className="ml-auto">
-            <Nav.Link href="/Login" onClick={() => click()}>
+            <LinkContainer to={"/login"}>
+            <Nav.Item onClick={() => click()}>
               Login
-            </Nav.Link>
-            <Nav.Link href="/Signup" onClick={() => click()}>
+            </Nav.Item>
+            </LinkContainer>
+            <LinkContainer to={"/SignUp"}>
+            <Nav.Item onClick={() => click()}>
               Sign Up
-            </Nav.Link>
+            </Nav.Item>
+            </LinkContainer>
             <Button className="rounded-circle" onClick={openCart}>
               <FaPaw></FaPaw>
               <div
