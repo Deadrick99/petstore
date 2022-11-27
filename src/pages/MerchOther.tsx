@@ -37,14 +37,14 @@ function Merchs ()
             if (data[i].IMAGEFILE !== null){
                 isImg = true;
             }
-            if(data[i].CATEGORY !== "Dog" && data[i].CATEGORY !== "Cat"){
+            if(data[i].Category !== "Dog" && data[i].CATEGORY !== "Cat"){
            
             const Merch: Merch={
-                id :data[i].ITEMID,
-                description :data[i].DESCRIPTION,
-                category :data[i].CATEGORY, 
-                quantity : data[i].QUANTITY,
-                price :data[i].LISTPRICE,
+                id: data[i].Id,
+                description: data[i].Description,
+                category: data[i].Category,
+                quantity: data[i].QuantityOnHand,
+                price: data[i].ListPrice,
                 cartAmount: 0,
                 imgURL: Other
             }

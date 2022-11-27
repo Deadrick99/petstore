@@ -8,11 +8,7 @@ import React from "react";
              breed :string;
              dob:string;
              gender:string;
-             img:string ;
-             imgH:string;
-             imgW:string;
              price:string ;
-             photo:string;
              reg:string;
   }
 

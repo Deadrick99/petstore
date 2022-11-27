@@ -17,7 +17,6 @@ const map = new Map();
 function mapMerch(data: Merch[]){
     for (let index = 0; index < data.length; index++) {
         map.set(data[index].id, data[index])
-        console.log(data[index].id)
     }
 }
 export function ShoppingCart({isOpen}: ShoppingCartProps, {items}:ShoppingCartProps){

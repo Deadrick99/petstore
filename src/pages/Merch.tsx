@@ -15,7 +15,6 @@ interface Merch  {
 export function MerchItem(item: Merch){
   const {getItemQuantity, increaseCartQuantity,decreaseCartQuantity,removeFromCart} =useShoppingCart()
         let cartAmount =getItemQuantity(item.id);
-        console.log(item.id)
   return(
     <Card  style={{ width:'100%', height:'100%', boxShadow:'10px 5px 5px black' }}>
             <Card.Img variant="top" src={item.imgURL} style={{ width :'100%',height:"10rem"}}/>

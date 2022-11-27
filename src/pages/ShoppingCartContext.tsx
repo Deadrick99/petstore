@@ -98,7 +98,6 @@ export function ShoppingCartProvider({ children }:
 
             cartAmounts.push({id, quantity:1})
             setCartAmounts(cartAmounts)
-            console.log(cartAmounts)
             setCartItems([...cartItems,item])
         }
 

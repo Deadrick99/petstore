@@ -38,21 +38,17 @@ function Pets ()
             if (data[i].IMAGEFILE !== null){
                 isImg = true;
             }
-            if(data[i].CATEGORY === "Dog"){
+            if(data[i].Category === "Dog"){
            
             const Pet: Pet={
-                id :data[i].ANIMALID,
-                name :data[i].NAME,
-                category :data[i].CATEGORY, 
-                breed :data[i].BREED,
-                dob :data[i].DATEBORN,
-                gender :data[i].GENDER, 
-                img :data[i].IMAGEFILE,
-                imgH :data[i].IMAGEHEIGHT, 
-                imgW :data[i].IMAGEWIDTH,
-                price :data[i].LISTPRICE,
-                photo :data[i].PHOTO, 
-                reg: data[i].REGISTERED, 
+                id: data[i].Id,
+                name: data[i].Name,
+                category: data[i].Category,
+                breed: data[i].Breed,
+                dob: data[i].DateBorn,
+                gender: data[i].Gender,
+                price: data[i].ListPrice,
+                reg: data[i].Registerd,
             }
         
             petsArr.push(Pet);
