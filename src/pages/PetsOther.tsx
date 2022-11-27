@@ -20,7 +20,7 @@ function Pets() {
 
   useEffect(() => {
     const fetchPets = async () => {
-      const response = await Axios.get("https://petstoretest-production.up.railway.app/api/animals");
+      const response = await Axios.get("https://petstorebackend-production.up.railway.app/api/animals");
       initPets(response.data);
     };
     fetchPets();

@@ -29,7 +29,7 @@ const Schemas = {
     }).trim().min(5, {message: 'Password should be non-empty'})
 };
 
-const API_URL = "http://localhost:3000/api/login";
+const API_URL = "https://petstorebackend-production.up.railway.app/api/login";
 
 /**
  * create and manage the operation of the login page

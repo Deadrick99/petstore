@@ -27,7 +27,7 @@ const Schemas = {
     }),
 };
 
-const API_URL = "http://localhost:3000/api/signup";
+const API_URL = "https://petstorebackend-production.up.railway.app/api/signup";
 
 /**
  * create and manage the operation of the sign up page
