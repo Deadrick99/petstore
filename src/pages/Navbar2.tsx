@@ -14,12 +14,17 @@ import { setPageEnd, setPageTotal } from "../redux/pageTime";
 import { Button } from "react-bootstrap";
 import { FaPaw } from "react-icons/fa";
 import { useShoppingCart } from "./ShoppingCartContext";
+import { setLoggedIn } from "../redux/user";
 function Navbar2() {
   const bounced = useAppSelector((state) => state.bounced.bounced);
   const pageTime = useAppSelector((state) => state.pageTime.totalPageTime);
   const views = useAppSelector((state) => state.views.views);
+  const loggedIn = useAppSelector((state) => state.user.loggedIn);
+  const email = useAppSelector((state) => state.user.email);
+  const userName = email.substring(0,email.indexOf('@') );
   const dispatch = useAppDispatch();
   const { openCart, cartQuantity } = useShoppingCart();
+  var greeting;
   function click() {
     var d = new Date();
     dispatch(setPageEnd(d.getTime()));
@@ -31,6 +36,26 @@ function Navbar2() {
     }
     dispatch(setViews());
     console.log(`pageviews ${views}`);
+  }
+  if(loggedIn == "true"){
+    greeting=   <NavDropdown title={userName} id="basic-nav-dropdown">
+                <LinkContainer to={"/login"} >
+                <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Logout</NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown> 
+  }
+  else{
+    greeting =<Nav style={{marginTop: ".3rem"}}><LinkContainer to={"/login"} >
+            <Nav.Item onClick={() => click()}>
+              Login
+            </Nav.Item>
+            </LinkContainer>
+            <Nav.Item>|</Nav.Item>
+            <LinkContainer to={"/SignUp"}>
+            <Nav.Item onClick={() => click()}>
+              Sign Up
+            </Nav.Item>
+            </LinkContainer></Nav>
   }
   return (
     <Navbar expand="lg" className="sticky-top bg-light">
@@ -71,18 +96,9 @@ function Navbar2() {
             {/* <Nav.Link href="/Suppliers">Suppliers</Nav.Link>
             <Nav.Link href="/Customers">Customers</Nav.Link> */}
           </Nav>
-
+            
           <Nav className="ml-auto">
-            <LinkContainer to={"/login"}>
-            <Nav.Item onClick={() => click()}>
-              Login
-            </Nav.Item>
-            </LinkContainer>
-            <LinkContainer to={"/SignUp"}>
-            <Nav.Item onClick={() => click()}>
-              Sign Up
-            </Nav.Item>
-            </LinkContainer>
+            {greeting}
             <Button className="rounded-circle" onClick={openCart}>
               <FaPaw></FaPaw>
               <div

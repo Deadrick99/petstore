@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import backGround from "./images/bg2.png";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail, setToken } from "../redux/user";
+import { setAdmin, setEmail, setLoggedIn, setToken } from "../redux/user";
 
 const FormGroupClass = 'm-2';
 const Params = ['email', 'password'];
@@ -44,12 +44,13 @@ const Login = () => {
      */
     const dispatch = useDispatch();
     const userEmail = useSelector((state: any) => state.user.email);
-    const userToken = useSelector((state: any) => state.user.token);
+    const userToken = useSelector((state: any) => state.user.loggedIn);
 
     const navigate = useNavigate();
     const [form, setForm] = useState({
         email: {error: null, isValid: true, message: '', value: ''},
         password: {error: null, isValid: true, message: '', value: ''},
+        admin:{error: null, isValid: true, message: '', value: ''},
         server_response: { error: null, isValid: true, message: '', value: ''},
     });
 
@@ -105,9 +106,10 @@ const Login = () => {
                 true,
                 response.data
             );
-
+            
             dispatch(setEmail(form.email.value));
-            dispatch(setToken(form.server_response.message));
+            dispatch(setAdmin(form.server_response.message));
+            dispatch(setLoggedIn('true'))
 
             /**
              * Assuming the aforementioned code ran without error, we can
@@ -118,6 +120,7 @@ const Login = () => {
         }
         catch (error: any)
         {
+            console.log(userToken)
             console.log("Invalid Login")
             updateField(
                 'server_response',

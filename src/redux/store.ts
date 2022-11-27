@@ -7,6 +7,7 @@ import bouncedReducer from "./bounced";
 import viewsReducer from "./views"
 import timeReducer from "./time"
 import pageTimeReducer from "./pageTime";
+import petNameReducer from "./petName"
 
 const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
         bounced: bouncedReducer,
         views: viewsReducer,
         time :timeReducer,
-        pageTime:pageTimeReducer
+        pageTime:pageTimeReducer,
+        petName: petNameReducer
     }
 });
 

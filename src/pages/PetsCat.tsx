@@ -12,12 +12,21 @@ import { CardGroup } from "react-bootstrap";
 import backGround from "./images/bg2.png";
 import { formatCurrency } from "./utilities/formatCurrency";
 import { LinkContainer } from "react-router-bootstrap";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+
+import { setPetName } from "../redux/petName";
+
+
+
 
 function Pets() {
+  var petName:string;
+
+  const dispatch = useAppDispatch();
   const [pets, setPets] = useState<Array<Pet>>([]);
   var isImg = false;
   var imgPath: string | undefined;
-
+  
   useEffect(() => {
     const fetchPets = async () => {
       const response = await Axios.get("https://petstorebackend-production.up.railway.app/api/animals");
@@ -43,7 +52,7 @@ function Pets() {
           price: data[i].ListPrice,
           reg: data[i].Registerd,
         };
-
+        
         petsArr.push(Pet);
       }
     }
@@ -90,8 +99,8 @@ function Pets() {
             <Row>
               <Col>
               <LinkContainer to={"/Adopt"}>
-                <Button variant="primary">
-                  Adopt me!
+                <Button variant="primary" onClick={() => {petName = Pet.name; dispatch(setPetName(petName))}}>
+                  Adopt me! 
                 </Button>
                 </LinkContainer>
               </Col>

@@ -8,11 +8,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import {basicSchema} from "../schemas/YupSchema"
 import backGround from "./images/bg2.png";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+
 const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
   await new Promise ((resolve) => setTimeout(resolve,2000));
   actions.resetForm();
 }
 function Adopt() {
+  const petName1 = useAppSelector((state) => state.petName.petName)
+  console.log(petName1)
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -26,7 +30,7 @@ function Adopt() {
     validationSchema: basicSchema,
     onSubmit,
   });
-  console.log(formik.errors);
+
   return (
     <div
       className="color-overlay d-flex justify-content-center align-items-center"
@@ -145,7 +149,7 @@ function Adopt() {
            
             >
               <Form.Label>
-                Please tell us why you would like to adopt X.
+                Please tell us why you would like to adopt {petName1}.
               </Form.Label>
               <Form.Control as="textarea" rows={5} 
               name="about"

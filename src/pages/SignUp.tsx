@@ -86,7 +86,7 @@ const SignUp = () => {
             response = await Axios.post(
                 API_URL, {
                     email: String(form.email.value),
-                    password: String(form.password.value)
+                    password: String(form.password.value),
                 }
             )
             updateField(
@@ -243,13 +243,14 @@ const SignUp = () => {
                                     </Form.Text>
                                 }
                             </Form.Group>
-
+                            
                             {/**
                              * Buttons
                              */}
                             <Button className="m-2" variant='primary' type="submit" onClick={handleSubmit}>
                                 Sign Up
                             </Button>
+                            
                         </Form>
                     </Col>
                 </Row>

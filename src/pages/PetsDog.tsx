@@ -12,10 +12,19 @@ import CardGroup from "react-bootstrap/esm/CardGroup";
 import backGround from "./images/bg2.png";
 import { formatCurrency } from "./utilities/formatCurrency";
 import { LinkContainer } from "react-router-bootstrap";
- 
+
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setPetName } from "../redux/petName";
+import { Navbar } from "react-bootstrap";
+
 
 function Pets () 
 {
+    var petName:string;
+    
+    const dispatch = useAppDispatch();
+    const petName1 = useAppSelector((state) => state.petName.petName)
+    console.log(petName1)
     const [pets,setPets]= useState<Array<Pet>>([]);
      var isImg = false;
      var imgPath: string | undefined;
@@ -50,7 +59,7 @@ function Pets ()
                 price: data[i].ListPrice,
                 reg: data[i].Registerd,
             }
-        
+            
             petsArr.push(Pet);
         }
     }
@@ -98,11 +107,14 @@ function Pets ()
                 
                 <Row>
                     <Col>
-                <LinkContainer to={"/Adopt"}>
-                <Button variant="primary">
-                  Adopt me!
+               
+                <LinkContainer  to={"/Adopt"}>
+                <Button variant="primary" onClick={() => {petName = Pet.name; dispatch(setPetName(petName))}} >
+                    
+                  Adopt me! 
                 </Button>
                 </LinkContainer>
+                
                 </Col>
                  <Col>
                 <h4>{formatCurrency(parseInt(Pet.price))}</h4>
