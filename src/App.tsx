@@ -22,13 +22,17 @@ import "./App.css";
 import { useAppDispatch, useAppSelector} from "./redux/hooks"
 import store from './redux/store';
 import { ShoppingCartProvider } from "./pages/ShoppingCartContext";
-
+import MerchEdit from "./pages/MerchEdit";
+import { setSendViews } from "./redux/views";
+import Axios from "axios";
 var startDate = new Date();
 const beforeunload = function(){
   const endDate = new Date();
   const totalTime = endDate.getTime() - startDate.getTime();
   console.log(`Time spent this session in secounds ${totalTime/1000}`);
-   
+   const dispatch = useAppDispatch();
+   dispatch(setSendViews());
+   Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddPageTime/"+0+"/"+totalTime);
    const time = Date.now();
   while ((Date.now() - time) < 2000) {
 
@@ -54,6 +58,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/MerchDog" element={<MerchDog/>}/>
           <Route path="/MerchCat" element={<MerchCat/>}/>
           <Route path="/MerchOther" element={<MerchOther/>}/>
+          <Route path="/MerchEdit"  element={<MerchEdit/>}/>
           </Route>
         </Routes>
       </BrowserRouter> 

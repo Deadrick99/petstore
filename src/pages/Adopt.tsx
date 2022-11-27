@@ -16,7 +16,7 @@ const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
 }
 function Adopt() {
   const petName1 = useAppSelector((state) => state.petName.petName)
-  console.log(petName1)
+
   const formik = useFormik({
     initialValues: {
       firstName: "",

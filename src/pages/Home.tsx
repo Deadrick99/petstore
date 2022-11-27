@@ -12,6 +12,7 @@ import { setStart } from "../redux/time";
 import { setPageStart } from "../redux/pageTime";
 import Carousel from "react-bootstrap/Carousel";
 import backGround from "./images/bg2.png";
+import Axios  from "axios";
 
 const Home = () => {
   /**
@@ -27,6 +28,11 @@ const Home = () => {
     if (visited === false) {
       dispatch(setVisited());
       console.log("user visited");
+      send()
+    }
+    async function send () {
+      console.log("send to sister")
+      await Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddVisitor");
     }
     dispatch(setViews());
     dispatch(setStart());

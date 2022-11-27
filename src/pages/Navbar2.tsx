@@ -15,34 +15,65 @@ import { Button } from "react-bootstrap";
 import { FaPaw } from "react-icons/fa";
 import { useShoppingCart } from "./ShoppingCartContext";
 import { setLoggedIn } from "../redux/user";
+import Axios from "axios";
+import { setSendTotal } from "../redux/time";
 function Navbar2() {
   const bounced = useAppSelector((state) => state.bounced.bounced);
   const pageTime = useAppSelector((state) => state.pageTime.totalPageTime);
   const views = useAppSelector((state) => state.views.views);
   const loggedIn = useAppSelector((state) => state.user.loggedIn);
+  const isAdmin = useAppSelector((state) => state.user.admin);
   const email = useAppSelector((state) => state.user.email);
   const userName = email.substring(0,email.indexOf('@') );
   const dispatch = useAppDispatch();
   const { openCart, cartQuantity } = useShoppingCart();
   var greeting;
-  function click() {
+  
+  async function click() {
     var d = new Date();
     dispatch(setPageEnd(d.getTime()));
     dispatch(setPageTotal());
-    console.log({ pageTime });
+ 
+    dispatch(setSendTotal())
     if (bounced === true) {
       dispatch(setBounced());
+
+       await Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddBounceRate");
       console.log("User did not bounce");
     }
     dispatch(setViews());
     console.log(`pageviews ${views}`);
   }
   if(loggedIn == "true"){
-    greeting=   <NavDropdown title={userName} id="basic-nav-dropdown">
+    console.log(isAdmin);
+    if(isAdmin.toString() == "true")
+    {
+      console.log(isAdmin);
+      greeting= <NavDropdown title={userName} id="basic-nav-dropdown">
                 <LinkContainer to={"/login"} >
                 <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Logout</NavDropdown.Item>
               </LinkContainer>
+              <LinkContainer to={"/login"} >
+                <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Admin Controlls</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to={"/login"} >
+                <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Pending Applications</NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown> 
+             
+    }
+    else 
+    {
+      console.log(isAdmin);
+      greeting=<NavDropdown title={userName} id="basic-nav-dropdown">
+                <LinkContainer to={"/login"} >
+                <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Logout</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to={"/login"} >
+                <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Applications</NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown> 
+    }
   }
   else{
     greeting =<Nav style={{marginTop: ".3rem"}}><LinkContainer to={"/login"} >

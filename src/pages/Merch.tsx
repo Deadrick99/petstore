@@ -1,7 +1,10 @@
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Nav, Row } from "react-bootstrap";
 import { useShoppingCart } from "./ShoppingCartContext";
 import { formatCurrency } from "./utilities/formatCurrency";
-
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import Axios from "axios";
+import { setItemId } from "../redux/petName";
+import { LinkContainer } from "react-router-bootstrap";
 interface Merch  {
              id: number;
              description : string ;
@@ -13,8 +16,30 @@ interface Merch  {
              
   }
 export function MerchItem(item: Merch){
+  function deleteMerch(id: number)
+  {
+    Axios.delete("https://petstorebackend-production.up.railway.app/api/merchandise/"+id);
+  }
+  const dispatch = useAppDispatch()
   const {getItemQuantity, increaseCartQuantity,decreaseCartQuantity,removeFromCart} =useShoppingCart()
         let cartAmount =getItemQuantity(item.id);
+        const isAdmin = useAppSelector((state)=> state.user.admin);
+        var admin,itemId;
+        console.log(isAdmin)
+        if(isAdmin.toString() == "true")
+        {
+          admin = <div>
+            <LinkContainer to="/MerchEdit">
+            <Button variant="warning" onClick={()=>{itemId = item.id; dispatch(setItemId(itemId))}}>Edit</Button>
+            </LinkContainer>
+            <Button variant="danger" onClick= {() => deleteMerch(item.id)}>Delete</Button>
+            
+          </div>
+        }
+        else
+        {
+          admin= <div></div>
+        }
   return(
     <Card  style={{ width:'100%', height:'100%', boxShadow:'10px 5px 5px black' }}>
             <Card.Img variant="top" src={item.imgURL} style={{ width :'100%',height:"10rem"}}/>
@@ -58,6 +83,7 @@ export function MerchItem(item: Merch){
                         <Button onClick={() =>removeFromCart(item)} variant="danger" size="sm"> Remove</Button>
                         </div>}
                 </div>
+                {admin}
             </Card.Body> 
             </Card>
   )
