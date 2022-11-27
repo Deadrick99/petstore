@@ -61,7 +61,7 @@ const Home = () => {
             <img
               className="d-block mx-auto"
               style={{ height: 800 }}
-              src="https://vetsource.com/wp-content/uploads/2018/11/img-pet-adoption-101.jpg"
+              src="https://www.thisdogslife.co/wp-content/uploads/2019/02/Raising-a-Happy-Dog-7.jpg"
               alt="Second slide"
             />
             <Carousel.Caption>
