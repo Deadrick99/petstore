@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Axios from "axios";
-
 export const viewsSlice = createSlice({
     name: 'views',
     initialState: {

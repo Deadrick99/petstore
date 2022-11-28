@@ -16,16 +16,15 @@ interface Merch  {
              
   }
 export function MerchItem(item: Merch){
-  function deleteMerch(id: number)
+  async function deleteMerch(id: number)
   {
-    Axios.delete("https://petstorebackend-production.up.railway.app/api/merchandise/"+id);
+    await Axios.delete("https://petstorebackend-production.up.railway.app/api/merchandise/"+id);
   }
   const dispatch = useAppDispatch()
   const {getItemQuantity, increaseCartQuantity,decreaseCartQuantity,removeFromCart} =useShoppingCart()
         let cartAmount =getItemQuantity(item.id);
         const isAdmin = useAppSelector((state)=> state.user.admin);
         var admin,itemId;
-        console.log(isAdmin)
         if(isAdmin.toString() == "true")
         {
           admin = <div>
@@ -81,9 +80,11 @@ export function MerchItem(item: Merch){
 
                         </div>
                         <Button onClick={() =>removeFromCart(item)} variant="danger" size="sm"> Remove</Button>
+                        
                         </div>}
+                        {admin}
                 </div>
-                {admin}
+                
             </Card.Body> 
             </Card>
   )

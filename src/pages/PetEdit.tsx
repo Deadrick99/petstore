@@ -6,7 +6,7 @@ import "./AdoptStyle.css";
 import { Formik, useFormik } from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import {basicSchema, merchSchema} from "../schemas/YupSchema"
+import {basicSchema, merchSchema, petSchema} from "../schemas/YupSchema"
 import backGround from "./images/bg2.png";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import Axios from "axios";
@@ -17,31 +17,35 @@ const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
   actions.resetForm();
   console.log("submit")
 }
-function MerchEdit() {
+function PetEdit() {
   const isAdmin = useAppSelector((state) => state.user.admin)
   
   const formik = useFormik({
     initialValues: {
-      description:"",
-      quantity:"",
-      price:"",
+      name:"",
       category:"",
+      breed:"",
+      gender:"",
+      price:""
     },
     
-    validationSchema: merchSchema,
+    validationSchema: petSchema,
     onSubmit,
   });
   var admin;
-  const itemId = parseInt(useAppSelector((state) => state.petName.itemId))
+  const itemId = parseInt(useAppSelector((state) => state.petName.petId))
+  
   const send = async() =>
   {
+    console.log(itemId)
       await Axios.patch(
-                "https://petstorebackend-production.up.railway.app/api/merchandise/"+parseInt(itemId.toString()), {
+                "https://petstorebackend-production.up.railway.app/api/animals/"+parseInt(itemId.toString()), {
                         
-                         "Description": formik.values.description,
-                        "QuantityOnHand": parseInt(formik.values.quantity.toString()),
-                        "ListPrice":parseInt(formik.values.price.toString()),
-                        "Category": formik.values.category
+                         "Name": formik.values.name,
+                         "Category": formik.values.category,
+                         "Breed": formik.values.breed,
+                         "Gender": formik.values.gender,
+                        "ListPrice":parseInt(formik.values.price.toString())
                 }
             )
     
@@ -53,37 +57,37 @@ function MerchEdit() {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                id="description"
+                id="name"
                 type="text"
-                placeholder="Enter description"
-                name="description"
+                placeholder="Enter name"
+                name="name"
                 /* Set onChange to handleChange */
                 onChange={formik.handleChange}
                 /* Set onBlur to handleBlur */
-                value={formik.values.description}
+                value={formik.values.name}
                 onBlur={formik.handleBlur}
-                className={formik.errors.description && formik.touched.description ? "border-danger" : ''}
+                className={formik.errors.name && formik.touched.name ? "border-danger" : ''}
               ></Form.Control>
-              {formik.errors.description && formik.touched.description &&<p className={"text-danger"}> {formik.errors.description}</p>}
+              {formik.errors.name && formik.touched.name &&<p className={"text-danger"}> {formik.errors.name}</p>}
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Quantity</Form.Label>
+              <Form.Label>Animal Breed</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter amount"
-                name="quantity"
+                name="breed"
                 /* Set onChange to handleChange */
                 onChange={formik.handleChange}
                 /* Set onBlur to handleBlur */
                 onBlur={formik.handleBlur}
-                value={formik.values.quantity}
-                className={formik.errors.quantity && formik.touched.quantity ? "border-danger" : ''}
+                value={formik.values.breed}
+                className={formik.errors.breed && formik.touched.breed ? "border-danger" : ''}
               ></Form.Control>
-              {formik.errors.quantity && formik.touched.quantity &&<p className={"text-danger"}> {formik.errors.quantity}</p>}
+              {formik.errors.breed && formik.touched.breed &&<p className={"text-danger"}> {formik.errors.breed}</p>}
             </Form.Group>
           </Col>
         </Row>
@@ -122,6 +126,23 @@ function MerchEdit() {
               {formik.errors.category && formik.touched.category &&<p className={"text-danger"}> {formik.errors.category}</p>}
             </Form.Group>
           </Col>
+          <Col>
+            <Form.Group className="mb-3" >
+              <Form.Label>Gender</Form.Label>
+              <Form.Control
+                type="gender"
+                placeholder="Enter category"
+                name="gender"
+                /* Set onChange to handleChange */
+                onChange={formik.handleChange}
+                /* Set onBlur to handleBlur */
+                onBlur={formik.handleBlur}
+                value={formik.values.gender}
+                className={formik.errors.gender && formik.touched.gender ? "border-danger" : ''}
+              />
+              {formik.errors.gender && formik.touched.gender &&<p className={"text-danger"}> {formik.errors.gender}</p>}
+            </Form.Group>
+          </Col>
         </Row>
         
         <Button disabled={formik.isSubmitting} onClick={()=>send()} variant="primary" type="submit" >
@@ -144,4 +165,4 @@ function MerchEdit() {
     </div>
   );
 }
-export default MerchEdit;
+export default PetEdit;

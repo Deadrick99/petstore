@@ -17,6 +17,7 @@ function Merchs() {
     const fetchPets = async () => {
       const response = await Axios.get("https://petstorebackend-production.up.railway.app/api/merchandise");
       initPets(response.data);
+      
     };
     fetchPets();
   }, []);

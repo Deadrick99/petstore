@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const d = new Date();
+
 export const pageTimeSlice = createSlice({
     name: 'pageTime',
     initialState: {

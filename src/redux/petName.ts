@@ -7,6 +7,8 @@ export const petNameSlice = createSlice({
        petName:'',
         petId:'',
         itemId:'',
+        pageName:'',
+        approve:''
     },
     reducers: {
         setPetName: (state,action) => {
@@ -17,10 +19,16 @@ export const petNameSlice = createSlice({
         },
          setItemId:(state,action)=>{
             state.itemId = action.payload;
+        },
+        setPageName:(state,action)=>{
+            state.pageName = action.payload;
+        },
+        setApprove:(state,action)=>{
+            state.pageName = action.payload;
         }
      
     },
 });
 
-export const { setPetName,setPetId,setItemId } = petNameSlice.actions;
+export const { setPetName,setPetId,setItemId, setPageName, setApprove } = petNameSlice.actions;
 export default petNameSlice.reducer;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import 'bootstrap/dist/css/bootstrap.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -23,23 +23,22 @@ import { useAppDispatch, useAppSelector} from "./redux/hooks"
 import store from './redux/store';
 import { ShoppingCartProvider } from "./pages/ShoppingCartContext";
 import MerchEdit from "./pages/MerchEdit";
+
 import { setViews } from "./redux/views";
 import Axios from "axios";
-var startDate = new Date();
-const beforeunload = (event: { preventDefault: () => void; }) => {
-  event.preventDefault();
-  const endDate = new Date();
-  const totalTime = endDate.getTime() - startDate.getTime();
-  console.log(`Time spent this session in secounds ${totalTime/1000}`);
-   const dispatch = useAppDispatch();
-   const views = useAppSelector((state)=> state.views.views)
-   Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddPageTime/"+parseInt(views.toString())+"/"+parseInt(totalTime.toString()));
-   
-}
-window.addEventListener('beforeunload', beforeunload);
+import MerchNew from "./pages/MerchNew";
+import PetEdit from "./pages/Petedit";
+import PetNew from "./pages/PetNew";
+import AdoptAdmin from "./pages/AdoptAdmin";
+import AdoptUser from "./pages/AdoptUser";
+
+
+
+
+ 
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  
+
   <ShoppingCartProvider>
     <Provider store={ store }>
       <BrowserRouter>
@@ -53,13 +52,20 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/PetsDog" element={<PetsDog/>}/>
           <Route path="/PetsCat" element={<PetsCat/>}/>
           <Route path="/PetsOther" element={<PetsOther/>}/>
+          <Route path="/PetEdit" element={<PetEdit/>}/>
+          <Route path="/PetNew" element={<PetNew/>}/>
           <Route path="/MerchDog" element={<MerchDog/>}/>
           <Route path="/MerchCat" element={<MerchCat/>}/>
           <Route path="/MerchOther" element={<MerchOther/>}/>
           <Route path="/MerchEdit"  element={<MerchEdit/>}/>
+          <Route path="/MerchNew"  element={<MerchNew/>}/>
+          <Route  path="/AdoptAdmin" element={<AdoptAdmin/>}/>
+          <Route  path="/AdoptUser" element={<AdoptUser/>}/>
           </Route>
         </Routes>
-      </BrowserRouter> 
-    </Provider> 
+      </BrowserRouter>
+    </Provider>
  </ShoppingCartProvider>
 );
+
+

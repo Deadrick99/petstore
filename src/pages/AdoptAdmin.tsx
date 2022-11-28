@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import Pet from "./Pet";
-import Cat from "./images/cat.png";
+
 import { CardGroup } from "react-bootstrap";
 import backGround from "./images/bg2.png";
 import { formatCurrency } from "./utilities/formatCurrency";
@@ -15,55 +15,57 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { PetItem } from "./Pet";
 import { setPetId, setPetName } from "../redux/petName";
+import AdoptCard, { AdoptCardItem } from "./AdoptCard";
 
 
 
 
-function Pets() {
-  const [pets, setPets] = useState<Array<Pet>>([]);
+function AdminAdopt() {
+  const [cards, setCards] = useState<Array<AdoptCard>>([]);
   var isImg = false;
   var imgPath: string | undefined;
    
   useEffect(() => {
-    const fetchPets = async () => {
-      const response = await Axios.get("https://petstorebackend-production.up.railway.app/api/animals");
-      initPets(response.data);
+    const fetchCards = async () => {
+      const response = await Axios.get("https://petstorebackend-production.up.railway.app/api/adoption");
+      initAdopt(response.data);
       
     };
-    fetchPets();
+    fetchCards();
   }, []);
-  const initPets = (data: string | any[]) => {
-    let petsArr = new Array<Pet>();
+  const initAdopt = (data: string | any[]) => {
+    let cardArr = new Array<AdoptCard>();
     for (let i = 0; i < data.length; i++) {
       if (data[i].IMAGEFILE !== null) {
         isImg = true;
       }
-      if (data[i].Category === "Cat") {
-        const Pet: Pet = {
-          id: data[i].Id,
-          name: data[i].Name,
-          category: data[i].Category,
-          breed: data[i].Breed,
-          dob: data[i].DateBorn,
-          gender: data[i].Gender,
-          price: data[i].ListPrice,
-          reg: data[i].Registerd,
-          imgURL: Cat,
+     
+        const Card: AdoptCard = {
+            id: data[i].Id,
+            firstName:data[i].FirstName,
+            lastName:data[i].LastName,
+            email:data[i].EmailName,
+            homeSize:data[i].HomeSize,
+            hours:data[i].HoursDay,
+            why:data[i].Why,
+            animalId:data[i].AnimalId,
+            approve:data[i].Approve
+          
         };
         
-        petsArr.push(Pet);
-      }
+        cardArr.push(Card);
+      
     }
-    setPets(petsArr);
+    setCards(cardArr);
   };
   
   
     return (
-      <div style={{ backgroundImage: `url(${backGround})` }}>
+      <div style={{ backgroundImage: `url(${backGround})`,height:"100%",width:"100%" }}>
       <Row className="mx-auto">
-         {pets.map((item) => (
+         {cards.map((item) => (
           <Col sm={4} lg={3} className="m-3 mx-auto p-3" key={item.id}>
-            <PetItem {...item}></PetItem>
+            <AdoptCardItem {...item}></AdoptCardItem>
           </Col>
         ))}
       </Row>
@@ -71,4 +73,4 @@ function Pets() {
     );
 }
 
-export default Pets;
+export default AdminAdopt;

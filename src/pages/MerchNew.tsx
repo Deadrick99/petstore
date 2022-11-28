@@ -17,7 +17,7 @@ const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
   actions.resetForm();
   console.log("submit")
 }
-function MerchEdit() {
+function MerchNew() {
   const isAdmin = useAppSelector((state) => state.user.admin)
   
   const formik = useFormik({
@@ -35,8 +35,8 @@ function MerchEdit() {
   const itemId = parseInt(useAppSelector((state) => state.petName.itemId))
   const send = async() =>
   {
-      await Axios.patch(
-                "https://petstorebackend-production.up.railway.app/api/merchandise/"+parseInt(itemId.toString()), {
+      await Axios.post(
+                "https://petstorebackend-production.up.railway.app/api/merchandise",{
                         
                          "Description": formik.values.description,
                         "QuantityOnHand": parseInt(formik.values.quantity.toString()),
@@ -144,4 +144,4 @@ function MerchEdit() {
     </div>
   );
 }
-export default MerchEdit;
+export default MerchNew;

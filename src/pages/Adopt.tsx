@@ -9,14 +9,38 @@ import React from "react";
 import {basicSchema} from "../schemas/YupSchema"
 import backGround from "./images/bg2.png";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import  Axios  from "axios";
 
 const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
   await new Promise ((resolve) => setTimeout(resolve,2000));
   actions.resetForm();
+ 
 }
 function Adopt() {
+   const send = async() =>
+  {
+    console.log('hello')
+      await Axios.post(
+                "https://petstorebackend-production.up.railway.app/api/adoption",{
+                        "FirstName":formik.values.firstName,
+                        "LastName":formik.values.lastName,
+                        "EmailName":formik.values.email,
+                        "HomeSize":formik.values.homeSize,
+                        "HoursDay":formik.values.hours,
+                        "Why":formik.values.about,
+                        "CustomerEmail":email,
+                        "Approve":"Pending",
+                        "AnimalId":petId,
+                         
+                }
+            )
+    
+  }
+  const email = useAppSelector((state)=>state.user.email)
+  const petId = useAppSelector((state) => state.petName.petId)
   const petName1 = useAppSelector((state) => state.petName.petName)
-
+  const isLoggedIn = useAppSelector((state)=> state.user.loggedIn)
+  var loggedIn;
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -30,13 +54,9 @@ function Adopt() {
     validationSchema: basicSchema,
     onSubmit,
   });
-
-  return (
-    <div
-      className="color-overlay d-flex justify-content-center align-items-center"
-      style={{ height: "100vh", backgroundImage:`url(${backGround})` }}
-    >
-      <Form onSubmit= {formik.handleSubmit} className="rounded p-4 p-sm-3">
+  if(isLoggedIn)
+  {
+    loggedIn =  <Form onSubmit= {formik.handleSubmit} className="rounded p-4 p-sm-3">
         <Row>
           <Col>
             <Form.Group className="mb-3">
@@ -163,10 +183,20 @@ function Adopt() {
             </Form.Group>
           </Col>
         </Row>
-        <Button disabled={formik.isSubmitting} variant="primary" type="submit" >
+        <Button disabled={formik.isSubmitting} onClick={()=>send()} variant="primary" type="submit" >
           Submit
         </Button>
       </Form>
+  }
+  else{
+    loggedIn= <div>Must be looged in to subbmit adopt application.</div> 
+  }
+  return (
+    <div
+      className="color-overlay d-flex justify-content-center align-items-center"
+      style={{ height: "100vh", backgroundImage:`url(${backGround})` }}
+    >
+     {loggedIn}
     </div>
   );
 }

@@ -42,6 +42,7 @@ function Navbar2() {
       console.log("User did not bounce");
     }
     dispatch(setViews());
+    await Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddSessionInfo/"+parseInt(views.toString())+"/"+0);
     dispatch(setPageStart(d.getTime()))
     console.log(`pageviews ${views}`);
   }
@@ -54,12 +55,16 @@ function Navbar2() {
                 <LinkContainer to={"/login"} >
                 <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Logout</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to={"/login"} >
-                <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Admin Controlls</NavDropdown.Item>
+              <LinkContainer to={"/MerchNew"} >
+                <NavDropdown.Item >Create New Merch</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to={"/login"} >
-                <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Pending Applications</NavDropdown.Item>
+              <LinkContainer to={"/PetNew"} >
+                <NavDropdown.Item >Create New Pet</NavDropdown.Item>
               </LinkContainer>
+              <LinkContainer to={"/AdoptAdmin"} >
+                <NavDropdown.Item >Pending Applications</NavDropdown.Item>
+              </LinkContainer>
+              
             </NavDropdown> 
              
     }
@@ -70,8 +75,8 @@ function Navbar2() {
                 <LinkContainer to={"/login"} >
                 <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Logout</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to={"/login"} >
-                <NavDropdown.Item onClick={() => dispatch(setLoggedIn("false"))}>Applications</NavDropdown.Item>
+              <LinkContainer to={"/AdoptUser"} >
+                <NavDropdown.Item >Applications</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown> 
     }
