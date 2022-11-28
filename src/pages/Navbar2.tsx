@@ -10,7 +10,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setBounced } from "../redux/bounced";
 import { setViews } from "../redux/views";
-import { setPageEnd, setPageTotal } from "../redux/pageTime";
+import { setPageEnd, setPageStart, setPageTotal } from "../redux/pageTime";
 import { Button } from "react-bootstrap";
 import { FaPaw } from "react-icons/fa";
 import { useShoppingCart } from "./ShoppingCartContext";
@@ -33,8 +33,8 @@ function Navbar2() {
     var d = new Date();
     dispatch(setPageEnd(d.getTime()));
     dispatch(setPageTotal());
- 
-    dispatch(setSendTotal())
+    console.log(parseInt(pageTime.toString()));
+    await Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddPageTime/"+parseInt(pageTime.toString())+"/null");
     if (bounced === true) {
       dispatch(setBounced());
 
@@ -42,6 +42,7 @@ function Navbar2() {
       console.log("User did not bounce");
     }
     dispatch(setViews());
+    dispatch(setPageStart(d.getTime()))
     console.log(`pageviews ${views}`);
   }
   if(loggedIn == "true"){

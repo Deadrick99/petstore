@@ -6,12 +6,13 @@ interface timeState
    endTime:number
    totalTime:number
 }
+const d = new Date();
  const initialState= {
-       startTime: 0,
+       startTime: d.getTime(),
        endTime:0,
        totalTime:0
     } as timeState
-const d = new Date();
+
 export const timeSlice = createSlice({
     name: 'time',
     initialState,
@@ -27,7 +28,7 @@ export const timeSlice = createSlice({
            state.totalTime = state.endTime - state.startTime;
         },
         setSendTotal: (state) => {
-             Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddPageTime/"+state.totalTime+"/null");
+             
         }
      
     },

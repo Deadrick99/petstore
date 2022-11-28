@@ -11,7 +11,7 @@ export const viewsSlice = createSlice({
             state.views ++;
         },
         setSendViews:(state) => {
-            Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddPageTime/"+state.views+"/"+0);
+            
         }
      
     },

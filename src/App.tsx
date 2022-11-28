@@ -23,20 +23,18 @@ import { useAppDispatch, useAppSelector} from "./redux/hooks"
 import store from './redux/store';
 import { ShoppingCartProvider } from "./pages/ShoppingCartContext";
 import MerchEdit from "./pages/MerchEdit";
-import { setSendViews } from "./redux/views";
+import { setViews } from "./redux/views";
 import Axios from "axios";
 var startDate = new Date();
-const beforeunload = function(){
+const beforeunload = (event: { preventDefault: () => void; }) => {
+  event.preventDefault();
   const endDate = new Date();
   const totalTime = endDate.getTime() - startDate.getTime();
   console.log(`Time spent this session in secounds ${totalTime/1000}`);
    const dispatch = useAppDispatch();
-   dispatch(setSendViews());
-   Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddPageTime/"+0+"/"+totalTime);
-   const time = Date.now();
-  while ((Date.now() - time) < 2000) {
-
-    }
+   const views = useAppSelector((state)=> state.views.views)
+   Axios.post("https://monitoringapiteam4.azurewebsites.net/api/Metrics/AddPageTime/"+parseInt(views.toString())+"/"+parseInt(totalTime.toString()));
+   
 }
 window.addEventListener('beforeunload', beforeunload);
 

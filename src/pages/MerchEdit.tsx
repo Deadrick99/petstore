@@ -104,6 +104,23 @@ function MerchEdit() {
               {formik.errors.price && formik.touched.price &&<p className={"text-danger"}> {formik.errors.price}</p>}
             </Form.Group>
           </Col>
+          <Col>
+            <Form.Group className="mb-3" >
+              <Form.Label>Price</Form.Label>
+              <Form.Control
+                type="price"
+                placeholder="Enter price"
+                name="price"
+                /* Set onChange to handleChange */
+                onChange={formik.handleChange}
+                /* Set onBlur to handleBlur */
+                onBlur={formik.handleBlur}
+                value={formik.values.price}
+                className={formik.errors.price && formik.touched.price ? "border-danger" : ''}
+              />
+              {formik.errors.price && formik.touched.price &&<p className={"text-danger"}> {formik.errors.price}</p>}
+            </Form.Group>
+          </Col>
         </Row>
         <Button disabled={formik.isSubmitting} onClick={()=>send()} variant="primary" type="submit" >
           Submit
