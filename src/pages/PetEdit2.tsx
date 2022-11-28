@@ -17,7 +17,7 @@ const onSubmit = async (values: any , actions: { resetForm: () => void; }) =>{
   actions.resetForm();
   console.log("submit")
 }
-function Petedit() {
+function PetEdit2() {
   const isAdmin = useAppSelector((state) => state.user.admin)
   
   const formik = useFormik({
@@ -165,4 +165,4 @@ function Petedit() {
     </div>
   );
 }
-export default Petedit;
+export default PetEdit2;

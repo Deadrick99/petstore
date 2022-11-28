@@ -27,10 +27,10 @@ import MerchEdit from "./pages/MerchEdit";
 import { setViews } from "./redux/views";
 import Axios from "axios";
 import MerchNew from "./pages/MerchNew";
-import Petedit from "./pages/Petedit";
 import PetNew from "./pages/PetNew";
 import AdoptAdmin from "./pages/AdoptAdmin";
 import AdoptUser from "./pages/AdoptUser";
+import PetEdit2 from "./pages/PetEdit2";
 
 
 
@@ -52,7 +52,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/PetsDog" element={<PetsDog/>}/>
           <Route path="/PetsCat" element={<PetsCat/>}/>
           <Route path="/PetsOther" element={<PetsOther/>}/>
-          <Route path="/Petedit" element={<Petedit/>}/>
+          <Route path="/PetEdit" element={<PetEdit2/>}/>
           <Route path="/PetNew" element={<PetNew/>}/>
           <Route path="/MerchDog" element={<MerchDog/>}/>
           <Route path="/MerchCat" element={<MerchCat/>}/>
